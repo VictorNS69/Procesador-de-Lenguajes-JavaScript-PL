@@ -1,0 +1,9 @@
+<print,>
+<CaracterEspecial,5 >
+<Cadena,"$>
+<CaracterEspecial,6 >
+<CaracterEspecial,1 >
+<Entero,43>
+<ID,variable>
+<CaracterEspecial,1 >
+<EOF, >

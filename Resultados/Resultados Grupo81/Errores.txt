@@ -1,0 +1,12 @@
+(linea 2) ->Error en Analizador lexico: No se reconoce el caracter ( % )
+(linea 1) ->Error en Analizador sint�ctico: No se permite el token <print,> aqu�
+(linea 2) ->Error en Analizador lexico: No se reconoce el caracter ( % )
+(linea 1) ->Error en Analizador sint�ctico: No se permite el token <print,> aqu�
+(linea 2) ->Error en Analizador lexico: No se reconoce el caracter ( % )
+(linea 1) ->Error en Analizador sint�ctico: No se permite el token <print,> aqu�
+(linea 2) ->Error en Analizador lexico: No se reconoce el caracter ( % )
+(linea 1) ->Error en Analizador sint�ctico: No se permite el token <print,> aqu�
+(linea 1) ->Error en Analizador sint�ctico: No se permite el token <print,> aqu�
+(linea 1) ->Error en Analizador sint�ctico: No se permite el token <print,> aqu�
+(linea 2) ->Error en Analizador lexico: No se reconoce el caracter ( % )
+(linea 1) ->Error en Analizador sint�ctico: No se permite el token <print,> aqu�
