@@ -27,18 +27,17 @@ El lenguaje dispone de varios tipos de constantes:
 Negación (!).
 
 - **Operadores**
- - **Aritmeticos**
+	 - **Aritmeticos**
    La suma (+) y la división (/).
- - **De relación**
+ 	- **De relación**
    Distinto (!=).
- - **De incremento y decremento**
+ 	- **De incremento y decremento**
    Pre-autoincremento (++ como prefijo).
- - **De asignación** 
+ 	- **De asignación** 
    Igual (=).
 
 - **Identificadores**
 Los nombres de identificadores están formados por cualquier cantidad de letras,dígitos y subrayados (\_), siendo el primero siempre una letra. Ejemplos: a, a3, A3, Sueldo\_de\_Trabajador, z\_9\_9\_\_...
-
 Como ya se ha dicho, el lenguaje es dependiente de minúsculas o mayúsculas, por lo que los nombres a3 y A3 referencian a identificadores distintos.
 
 - **Declaraciones**
