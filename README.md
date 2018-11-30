@@ -45,6 +45,7 @@ Los nombres de identificadores están formados por cualquier cantidad de letras,
 El lenguaje JavaScript-PL no exige declaración de las variables que se utilicen. En el caso de que se use un nombre de variable que no ha sido declarado previamente, se considera que dicha variable es global y entera.
 
 	Para realizar una declaración de una variable, se coloca la palabra var seguida del tipo y del nombre de la variable. Se puede poner una lista de variables separadas por comas:
+	
 	var Tipo var0;
 	var Tipo var1, var2, var3;	// se declaran las tres variables
 
@@ -70,8 +71,7 @@ El lenguaje dispone de distintos tipos de datos básicos.
 
 	El lenguaje no tiene conversiones automáticas entre tipos.
 
-Ejemplos:
-
+	Ejemplos:
 	var int i = 11;    // variable entera
 	var string st;     // variable cadena 
 	var bool b;        // variable lógica
@@ -108,67 +108,72 @@ De todo el grupo de sentencias del lenguaje JavaScript, se han seleccionado para
     Existe una sentencia de asignación en JavaScript-PL, que se construye mediante el símbolo de asignación = . Su sintaxis general es la siguiente: identificador, igual y expresión. Esta sentencia asigna al identificador el resultado de evaluar la expresión:
 	i= 8 + 6;
 
-	Como ya se ha indicado, no hay conversiones entre tipos, por lo que tanto el identificador como la expresión han de ser del mismo tipo.
-	var int i = 123;	// i es una variable entera
-	var string cad;
-	print (i);   // imprime el valor entero 123
-	cad= 'hola';
-	print (cad); // imprime el valor cadena "hola"
-	i = i > 88;  // Error: no se puede asignar un lógico a un entero
+		Como ya se ha indicado, no hay conversiones entre tipos, por lo que tanto el identificador como la expresión han de ser del mismo tipo.
+	
+		var int i = 123;	// i es una variable entera
+		var string cad;
+		print (i);   // imprime el valor entero 123
+		cad= 'hola';
+		print (cad); // imprime el valor cadena "hola"
+		i = i > 88;  // Error: no se puede asignar un lógico a un entero
 
 	 - **Sentencia de Llamada a una Función**
-	Esta sentencia permite invocar la ejecución de una función que debe estar previamente definida [implementación obligatoria].
+		Esta sentencia permite invocar la ejecución de una función que debe estar previamente definida [implementación obligatoria].
 
-	La llamada a una función se realiza mediante el nombre de la función seguido de los argumentos actuales (separados por comas) entre paréntesis (si no tiene argumentos, hay que poner los paréntesis vacíos). Los argumentos pueden ser cualquier expresión:
-	p1 (5);        /* llamada a una función con un argumento entero */ 
-	p2 ();         /* llamada sin argumentos a una función */ 
-	p3 (b, i - 8); /* llamada con dos argumentos a una función */
+		La llamada a una función se realiza mediante el nombre de la función seguido de los argumentos actuales (separados por comas) entre paréntesis (si no tiene argumentos, hay que poner los paréntesis vacíos). Los argumentos pueden ser cualquier expresión:
+	
+		p1 (5);        /* llamada a una función con un argumento entero */ 
+		p2 ();         /* llamada sin argumentos a una función */ 
+		p3 (b, i - 8); /* llamada con dos argumentos a una función */
 
-	Los parámetros actuales en la llamada tienen que coincidir en número y tipo con los parámetros formales de la declaración de la función.
+		Los parámetros actuales en la llamada tienen que coincidir en número y tipo con los parámetros formales de la declaración de la función.
 
-	Si una función devuelve un valor, podrá incluirse una llamada a dicha función dentro de cualquier expresión. Si la llamada se realiza como una sentencia (no se realiza en una expresión), se invocará a la función pero el valor devuelto se perderá:
+		Si una función devuelve un valor, podrá incluirse una llamada a dicha función dentro de cualquier expresión. Si la llamada se realiza como una sentencia (no se realiza en una expresión), se invocará a la función pero el valor devuelto se perderá:
 
-	b= fun1 (9); /* llamada a una función con un argumento entero */ 
-	c= b + fun2 (b, fun3() - 8); /* llamada con dos argumentos a una función, siendo fun3, una llamada a otra función sin argumentos */
-	fun2 (5, c); /* el valor devuelto por fun2 se pierde */
+		b= fun1 (9); /* llamada a una función con un argumento entero */ 
+		c= b + fun2 (b, fun3() - 8); /* llamada con dos argumentos a una función, siendo fun3, una llamada a otra función sin argumentos */
+		fun2 (5, c); /* el valor devuelto por fun2 se pierde */
 
  	- **Sentencia de Retorno de una Función**
    JavaScript-PL dispone de la sentencia return para finalizar la ejecución de una función y volver al punto desde el que fue llamada. Si no se desea que una función devuelva un valor, ésta terminará cuando se ejecute la instrucción return (sin expresión) o al llegar al final del cuerpo de la función. Si se desea que la función devuelva algún dato, deberá incluirse una expresión en la sentencia return. Si se indica, el tipo de la expresión retornada deberá coincidir con el tipo de la función. Si no se incluye una expresión, la función debe haber sido declarada sin tipo.
-	function int SumaAlCuadrado (int a, int b)
-	{
-	  j= a + b;
-	  return j * j;
-	  /* La función finaliza y devuelve el valor entero de la expresión */
-	}
-	function pro (int x)
-	{
-	  x= SumaAlCuadrado (x - 1, x);
-	   /* x contendrá el valor devuelto por la función: (x+x-1)^2 */
-	  if (x > (194/2)) return; /* finaliza la ejecución si se ejecuta */
-	  print (SumaAlCuadrado (x, x));
-	} /* finaliza la ejecución si antes no se ejecutó el return */
+	
+		function int SumaAlCuadrado (int a, int b)
+		{
+		  j= a + b;
+		  return j * j;
+		  /* La función finaliza y devuelve el valor entero de la expresión */
+		}
+		function pro (int x)
+		{
+		  x= SumaAlCuadrado (x - 1, x);
+		   /* x contendrá el valor devuelto por la función: (x+x-1)^2 */
+		  if (x > (194/2)) return; /* finaliza la ejecución si se ejecuta */
+		  print (SumaAlCuadrado (x, x));
+		} /* finaliza la ejecución si antes no se ejecutó el return */
 
  	- **Sentencia Condicional simple**
    Selecciona la ejecución de una sentencia, dependiendo del valor correspondiente de una condición de tipo lógico:
 	if (condición) sentencia
 
-	Si la condición lógica se evalúa como cierta se ejecuta la sentencia que puede ser cualquier sentencia simple del lenguaje, es decir, asignación, operación de entrada/salida, llamada a función o retorno (también break o sentencias de auto-incremento o auto-decremento para los grupos que tengan dichas opciones); en caso contrario, se finaliza su ejecución:
-	if (a > b) c= b;
-	if (fin) print("adiós");
+		Si la condición lógica se evalúa como cierta se ejecuta la sentencia que puede ser cualquier sentencia simple del lenguaje, es decir, asignación, operación de entrada/salida, llamada a función o retorno (también break o sentencias de auto-incremento o auto-decremento para los grupos que tengan dichas opciones); en caso contrario, se finaliza su ejecución:
+		if (a > b) c= b;
+		if (fin) print("adiós");
 
 	 - **Sentencia Repetitiva while**
 Esta sentencia permite repetir la ejecución de unas sentencias basándose en el resultado de una expresión lógica. La sintaxis es:
-	while (condición) 
-	{
-	   sentencias
-	}
 
-	Se evalúa la condición lógica y, si resulta ser cierta, se ejecutan las sentencias (que será un bloque de sentencias encerradas entre llaves). Este proceso se repite hasta que la condición sea falsa:
-	while (n <= 10) 
-	{
-	    n= n + 1;
-	    print (n);
-	} /* mientras que n sea menor o igual que 10... */
+		while (condición) 
+		{
+		   sentencias
+		}
+
+		Se evalúa la condición lógica y, si resulta ser cierta, se ejecutan las sentencias (que será un bloque de sentencias encerradas entre llaves). Este proceso se repite hasta que la condición sea falsa:
+
+		while (n <= 10) 
+		{
+		    n= n + 1;
+		    print (n);
+		} /* mientras que n sea menor o igual que 10... */
 
 - **Funciones**
 Es necesario definir cada función antes de poder utilizarla. La definición de una función se realiza indicando la palabra function, el tipo de retorno (si la función devuelve algo), el nombre y, entre paréntesis, los argumentos (si existen) con sus tipos. Tras esta cabecera va un bloque (delimitado por llaves) con el cuerpo de la función:
@@ -188,6 +193,7 @@ Es necesario definir cada función antes de poder utilizarla. La definición de 
 	El lenguaje JavaScript-PL no permite la definición de funciones anidadas. Esto implica que dentro de una función no se puede definir otra función.
 
 	Dentro de una función se tiene acceso a las variables locales, a sus argumentos y a las variables globales. Si en una función se declara una variable local o un argumento con el mismo nombre que una variable global, ésta última no es accesible desde dicha función.
+	
 	var int x  // global
 	function int factorial (int x) 
 	   /* se define la función recursiva con un parámetro, 
