@@ -116,7 +116,7 @@ La sentencia prompt (var) lee un número o una cadena del teclado y lo almacena 
 - **Sentencias**
 De todo el grupo de sentencias del lenguaje JavaScript, se han seleccionado para ser implementadas las que aparecen a continuación [opcional u obligatoriamente, según se indique en cada caso]:
 
-	 - **Sentencias de Asignación**
+- **Sentencias de Asignación**
 Existe una sentencia de asignación en JavaScript-PL, que se construye mediante el símbolo de asignación = . Su sintaxis general es la siguiente: identificador, igual y expresión. Esta sentencia asigna al identificador el resultado de evaluar la expresión:
 ```
 	i= 8 + 6;
@@ -132,7 +132,7 @@ Como ya se ha indicado, no hay conversiones entre tipos, por lo que tanto el ide
 		i = i > 88;  // Error: no se puede asignar un lógico a un entero
 ```
 
-	- **Sentencia de Llamada a una Función**
+- **Sentencia de Llamada a una Función**
 Esta sentencia permite invocar la ejecución de una función que debe estar previamente definida .
 
 La llamada a una función se realiza mediante el nombre de la función seguido de los argumentos actuales (separados por comas) entre paréntesis (si no tiene argumentos, hay que poner los paréntesis vacíos). Los argumentos pueden ser cualquier expresión:
@@ -149,7 +149,7 @@ Si una función devuelve un valor, podrá incluirse una llamada a dicha función
 		c= b + fun2 (b, fun3() - 8); /* llamada con dos argumentos a una función, siendo fun3, una llamada a otra función sin argumentos */
 		fun2 (5, c); /* el valor devuelto por fun2 se pierde */
 ```
- 	- **Sentencia de Retorno de una Función**
+ - **Sentencia de Retorno de una Función**
 JavaScript-PL dispone de la sentencia return para finalizar la ejecución de una función y volver al punto desde el que fue llamada. Si no se desea que una función devuelva un valor, ésta terminará cuando se ejecute la instrucción return (sin expresión) o al llegar al final del cuerpo de la función. Si se desea que la función devuelva algún dato, deberá incluirse una expresión en la sentencia return. Si se indica, el tipo de la expresión retornada deberá coincidir con el tipo de la función. Si no se incluye una expresión, la función debe haber sido declarada sin tipo.
 ```
 		function int SumaAlCuadrado (int a, int b)
@@ -166,7 +166,7 @@ JavaScript-PL dispone de la sentencia return para finalizar la ejecución de una
 		  print (SumaAlCuadrado (x, x));
 		} /* finaliza la ejecución si antes no se ejecutó el return */
 ```
- 	- **Sentencia Condicional simple**
+ - **Sentencia Condicional simple**
 Selecciona la ejecución de una sentencia, dependiendo del valor correspondiente de una condición de tipo lógico:
 ```	
 	if (condición) sentencia
@@ -176,7 +176,7 @@ Si la condición lógica se evalúa como cierta se ejecuta la sentencia que pued
 		if (a > b) c= b;
 		if (fin) print("adiós");
 ```
-	 - **Sentencia Repetitiva while**
+ - **Sentencia Repetitiva while**
 Esta sentencia permite repetir la ejecución de unas sentencias basándose en el resultado de una expresión lógica. La sintaxis es:
 ```
 		while (condición) 
