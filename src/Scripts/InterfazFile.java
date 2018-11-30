@@ -96,7 +96,7 @@ public class InterfazFile {
 					try {
 						//Comenzamos a ejecutar el an�lisis
 						AnManager.pPrincipal(br);
-						JOptionPane.showMessageDialog(null, "An�lisis realizado con �xito");
+						JOptionPane.showMessageDialog(null, "Analisis realizado con exito");
 						frmPracticapdl.dispose();
 					} catch (IOException e1) {
 						JOptionPane.showMessageDialog(null, "Error al escribir los archivos en el directorio seleccionado");

@@ -1,9 +1,22 @@
-<print,>
+<int,>
+<ID,a>
+<Igual,>
+<Entero,3>
+<CaracterEspecial,1 >
+<while,>
 <CaracterEspecial,5 >
-<Cadena,"$>
+<ID,a>
+<Igual,>
+<Entero,3>
 <CaracterEspecial,6 >
+<CaracterEspecial,3 >
+<int,>
+<ID,b>
+<Igual,>
+<Entero,9>
 <CaracterEspecial,1 >
-<Entero,43>
-<ID,variable>
+<string,>
+<ID,c>
 <CaracterEspecial,1 >
+<CaracterEspecial,4 >
 <EOF, >

@@ -8,14 +8,14 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-//Esta clase ejecuta el funcionamiento del Analizador Sintáctico y Semántico
+//Esta clase ejecuta el funcionamiento del Analizador Sintï¿½ctico y Semï¿½ntico
 public class AnalizadorSinSem {
-	//Constantes para calcular el desplazamiento según el tipo de variable
+	//Constantes para calcular el desplazamiento segï¿½n el tipo de variable
 	private final static int desInt = 2; //Las variables enteras son 2
 	private final static int desChars = 4; //Las cadenas son 4
 	private final static int desBool = 2; //Los booleanos son 2
 
-	//Variables necesarias para las tablas de símbolos
+	//Variables necesarias para las tablas de sï¿½mbolos
 	public static itemTS T, Sa, X, H, L, E, Ea, R, Ra, U, Ua, V;
 	public static ArrayList <ArrayList <itemTS>> tablasSimbolos;
 	private static ArrayList <itemTS> TSG; 	//TSG: TSimbolos Global
@@ -40,27 +40,27 @@ public class AnalizadorSinSem {
 	
 	//Programa principal: Representa P' e inicializa todas las variables correspondientes
 	public static void AnalizadorSt(){
-		//El analizador sintáctico es el Descendente Recursivo:
+		//El analizador sintï¿½ctico es el Descendente Recursivo:
 		escribirParse("Descendente");
 		//Pedimos primer token
 		sgtetoken = AnManager.pedirTokenAlex();
-		//Tablas de símbolos
+		//Tablas de sï¿½mbolos
 		TSG = new ArrayList<itemTS>();
 		TSL = new ArrayList<itemTS>();
 		tablasSimbolos = new ArrayList<ArrayList <itemTS>>();
-		//Inicializamos variables necesarias para el analizador semántico
+		//Inicializamos variables necesarias para el analizador semï¿½ntico
 		T = Sa = X = H = L = E = Ea = R = Ra = U = Ua = V = new itemTS();
-		//La primera tabla de símbolos será la global
+		//La primera tabla de sï¿½mbolos serï¿½ la global
 		tablasSimbolos.add(0,TSG);
 		//Llamamos al axioma
 		P();
-		//Actualizamos tabla de símbolos global
+		//Actualizamos tabla de sï¿½mbolos global
 		tablasSimbolos.set(0,TSG);
 		//Imprimimos todas las tablas
 		imprimirTablas();
 	}
 
-	//Utilizamos una función por cada regla		
+	//Utilizamos una funciï¿½n por cada regla		
 	public static void P(){
 		if (sgtetoken == null){
 			return;
@@ -114,7 +114,7 @@ public class AnalizadorSinSem {
 				escribirParse("3");
 				return;
 			default:
-				Errores.escribirError("Analizador sintáctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+				Errores.escribirError("Analizador sintï¿½ctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 				Errores.panicMode();
 				P();
 				break;
@@ -125,7 +125,7 @@ public class AnalizadorSinSem {
 
 	public static void B(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -134,10 +134,10 @@ public class AnalizadorSinSem {
 				sgtetoken = AnManager.pedirTokenAlex();
 				T();
 				if(sgtetoken.tipoToken.equals("ID")){
-					//Analizador semántico:
+					//Analizador semï¿½ntico:
 					if (functionActual == null){ //Si no hay local, buscamos en la global
 						if (buscaTS(TSG, sgtetoken.attrToken) != null){
-							Errores.escribirError("Analizador semántico", "La variable "+sgtetoken.attrToken+" ya se ha declarado anteriormente", AnManager.lineasST);
+							Errores.escribirError("Analizador semï¿½ntico", "La variable "+sgtetoken.attrToken+" ya se ha declarado anteriormente", AnManager.lineasST);
 						}else{
 							itemTS a = new itemTS();
 							a.lexema = sgtetoken.attrToken;
@@ -147,7 +147,7 @@ public class AnalizadorSinSem {
 						}
 					}else{//Si hay local, buscamos en la tabla local
 						if (buscaTS(TSL, sgtetoken.attrToken) != null){
-							Errores.escribirError("Analizador semántico", "La variable "+sgtetoken.attrToken+" ya se ha declarado anteriormente", AnManager.lineasST);
+							Errores.escribirError("Analizador semï¿½ntico", "La variable "+sgtetoken.attrToken+" ya se ha declarado anteriormente", AnManager.lineasST);
 						}else{
 							itemTS a = new itemTS();
 							a.lexema = sgtetoken.attrToken;
@@ -161,7 +161,7 @@ public class AnalizadorSinSem {
 					if(sgtetoken.tipoToken.equals(";")){
 						sgtetoken = AnManager.pedirTokenAlex();
 					}else{
-						Errores.escribirError("Analizador sintáctico", "Falta un ';' antes de recibir "+sgtetoken.tipoToken+" aquí", AnManager.lineasST);
+						Errores.escribirError("Analizador sintï¿½ctico", "Falta un ';' antes de recibir "+sgtetoken.tipoToken+" aquï¿½", AnManager.lineasST);
 						//Tratamiento de error:
 						if (AnManager.comprobarSiguienteToken().tipoToken.equals(";")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 							sgtetoken = AnManager.pedirTokenAlex();
@@ -171,7 +171,7 @@ public class AnalizadorSinSem {
 						}
 					}
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Debería haber un identificador", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Deberï¿½a haber un identificador", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals(";")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -191,12 +191,12 @@ public class AnalizadorSinSem {
 					condicional = true; //Estamos en un condicional
 					E();
 					if (EhayError){	
-						Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+						Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 						EhayError = false;
 					}
-					//Semántico
+					//Semï¿½ntico
 					if(!E.tipo.equals("Bool")){
-						Errores.escribirError("Analizador semántico", "No es una expresión condicional lo que se encuentra en el if", AnManager.lineasST);
+						Errores.escribirError("Analizador semï¿½ntico", "No es una expresiï¿½n condicional lo que se encuentra en el if", AnManager.lineasST);
 					}
 
 					if(sgtetoken.tipoToken.equals(")")){
@@ -204,12 +204,12 @@ public class AnalizadorSinSem {
 						S();
 						condicional = false;
 					}else{
-						Errores.escribirError("Analizador sintáctico", "Falta un ')' antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+						Errores.escribirError("Analizador sintï¿½ctico", "Falta un ')' antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 						//Tratamiento de error:
 						Errores.panicMode();
 					}	
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Debería haber un paréntesis tras el 'if' antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Deberï¿½a haber un parï¿½ntesis tras el 'if' antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 					Errores.panicMode();
 				}
@@ -237,7 +237,7 @@ public class AnalizadorSinSem {
 				if(sgtetoken.tipoToken.equals("(")){
 					sgtetoken = AnManager.pedirTokenAlex();	
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Debería haber un paréntesis tras el 'for' antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Deberï¿½a haber un parï¿½ntesis tras el 'for' antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals("(")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -251,7 +251,7 @@ public class AnalizadorSinSem {
 				if(sgtetoken.tipoToken.equals(";")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Falta un ';' antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Falta un ';' antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals(";")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -263,18 +263,18 @@ public class AnalizadorSinSem {
 				}
 				E();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				if (!E.tipo.equals("Bool")){
-					Errores.escribirError("Analizador semántico", "La expresión en el 'for' no es una condición", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "La expresiï¿½n en el 'for' no es una condiciï¿½n", AnManager.lineasST);
 				}
 
 				if(sgtetoken.tipoToken.equals(";")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Falta un ';' antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Falta un ';' antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals(";")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -288,7 +288,7 @@ public class AnalizadorSinSem {
 				if(sgtetoken.tipoToken.equals(")")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Falta un ')' en el for, no se entiende el token "+sgtetoken.tipoToken+" aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Falta un ')' en el for, no se entiende el token "+sgtetoken.tipoToken+" aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals(")")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -298,13 +298,13 @@ public class AnalizadorSinSem {
 						return;
 					}
 				}
-				if (sgtetoken.tipoToken.equals("EOL")){ //Permitimos aqui un salto de línea
+				if (sgtetoken.tipoToken.equals("EOL")){ //Permitimos aqui un salto de lï¿½nea
 					sgtetoken = AnManager.pedirTokenAlex();
 				}
 				if(sgtetoken.tipoToken.equals("{")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Falta un '{' antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Falta un '{' antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals("{")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -319,7 +319,7 @@ public class AnalizadorSinSem {
 				if(sgtetoken.tipoToken.equals("}")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Falta un '}' para terminar el bucle, antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Falta un '}' para terminar el bucle, antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de errores
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals("}")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -331,7 +331,7 @@ public class AnalizadorSinSem {
 				}
 				return;
 			default:
-				Errores.escribirError("Analizador sintáctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+				Errores.escribirError("Analizador sintï¿½ctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 				break;
 			}	
 
@@ -340,14 +340,14 @@ public class AnalizadorSinSem {
 
 	public static void I(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
 			case "ID":
 				escribirParse("8");
 
-				//Analizador semántico:
+				//Analizador semï¿½ntico:
 				itemTS item;
 				if (functionActual == null){
 					if ((item = buscaTS(TSG, sgtetoken.attrToken)) == null){ //Si no existe la variable la consideramos entera y la metemos
@@ -371,12 +371,12 @@ public class AnalizadorSinSem {
 
 
 				sgtetoken = AnManager.pedirTokenAlex();
-				if(sgtetoken.tipoToken.equals("Asignación")){
+				if(sgtetoken.tipoToken.equals("Asignaciï¿½n")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Debería haber un '=', no se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Deberï¿½a haber un '=', no se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
-					if (AnManager.comprobarSiguienteToken().tipoToken.equals("Asignación")){ //Si el siguiente token es el que esperamos, continuamos normalmente
+					if (AnManager.comprobarSiguienteToken().tipoToken.equals("Asignaciï¿½n")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
 						sgtetoken = AnManager.pedirTokenAlex();
 					}else{ //Si no es lo que esperamos, procedemos al PanicMode
@@ -386,11 +386,11 @@ public class AnalizadorSinSem {
 				}
 				E();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
 				if(!item.tipo.equals(E.tipo)){
-					Errores.escribirError("Analizador semántico", "No se puede asignar un "+E.tipo+" a un "+item.tipo, AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No se puede asignar un "+E.tipo+" a un "+item.tipo, AnManager.lineasST);
 				}
 
 				return;
@@ -400,10 +400,10 @@ public class AnalizadorSinSem {
 				T();
 				itemTS item1 = new itemTS();
 				if(sgtetoken.tipoToken.equals("ID")){
-					//Analizador semántico:
+					//Analizador semï¿½ntico:
 					if (functionActual == null){
 						if ((item1 = buscaTS(TSG, sgtetoken.attrToken)) != null){
-							Errores.escribirError("Analizador semántico", "La variable "+sgtetoken.attrToken+" ya se ha declarado anteriormente", AnManager.lineasST);
+							Errores.escribirError("Analizador semï¿½ntico", "La variable "+sgtetoken.attrToken+" ya se ha declarado anteriormente", AnManager.lineasST);
 						}else{
 							item1 = new itemTS();
 							item1.lexema = sgtetoken.attrToken;
@@ -413,7 +413,7 @@ public class AnalizadorSinSem {
 						}
 					}else{
 						if ((item1 = buscaTS(TSL, sgtetoken.attrToken)) != null){
-							Errores.escribirError("Analizador semántico", "La variable "+sgtetoken.attrToken+" ya se ha declarado anteriormente", AnManager.lineasST);
+							Errores.escribirError("Analizador semï¿½ntico", "La variable "+sgtetoken.attrToken+" ya se ha declarado anteriormente", AnManager.lineasST);
 						}else{
 							item1 = new itemTS();
 							item1.lexema = sgtetoken.attrToken;
@@ -425,7 +425,7 @@ public class AnalizadorSinSem {
 
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Debería haber un identificador en vez del token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Deberï¿½a haber un identificador en vez del token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals("ID")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -434,12 +434,12 @@ public class AnalizadorSinSem {
 						return;
 					}
 				}
-				if(sgtetoken.tipoToken.equals("Asignación")){
+				if(sgtetoken.tipoToken.equals("Asignaciï¿½n")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Debería haber un '=' en vez del token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Deberï¿½a haber un '=' en vez del token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
-					if (AnManager.comprobarSiguienteToken().tipoToken.equals("Asignación")){ //Si el siguiente token es el que esperamos, continuamos normalmente
+					if (AnManager.comprobarSiguienteToken().tipoToken.equals("Asignaciï¿½n")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
 						sgtetoken = AnManager.pedirTokenAlex();
 					}else{ //Si no es lo que esperamos, procedemos al PanicMode
@@ -448,12 +448,12 @@ public class AnalizadorSinSem {
 				}
 				E();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
-				//Semántico
+				//Semï¿½ntico
 				if(!item1.tipo.equals(E.tipo)){
-					Errores.escribirError("Analizador semántico", "No se puede asignar un "+E.tipo+" a un "+item1.tipo, AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No se puede asignar un "+E.tipo+" a un "+item1.tipo, AnManager.lineasST);
 				}
 
 				return;
@@ -463,7 +463,7 @@ public class AnalizadorSinSem {
 				escribirParse("10");
 				return;
 			default:
-				Errores.escribirError("Analizador sintáctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+				Errores.escribirError("Analizador sintï¿½ctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 				break;
 			}	
 		}
@@ -471,7 +471,7 @@ public class AnalizadorSinSem {
 
 	public static void D(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -480,28 +480,28 @@ public class AnalizadorSinSem {
 				sgtetoken = AnManager.pedirTokenAlex();
 				if(sgtetoken.tipoToken.equals("ID")){
 					itemTS a = new itemTS();
-					//Analizador semántico:
+					//Analizador semï¿½ntico:
 					if (functionActual == null){
 						if ((a = buscaTS(TSG, sgtetoken.attrToken)) == null){
-							Errores.escribirError("Analizador semántico", "La variable "+sgtetoken.attrToken+" no se ha declarado anteriormente", AnManager.lineasST);
+							Errores.escribirError("Analizador semï¿½ntico", "La variable "+sgtetoken.attrToken+" no se ha declarado anteriormente", AnManager.lineasST);
 						}else{
 							if(!a.tipo.equals("Entero")){
-								Errores.escribirError("Analizador semántico", "La variable "+sgtetoken.attrToken+" no es de tipo 'Entero' por lo que no es posible hacer predecremento", AnManager.lineasST);
+								Errores.escribirError("Analizador semï¿½ntico", "La variable "+sgtetoken.attrToken+" no es de tipo 'Entero' por lo que no es posible hacer predecremento", AnManager.lineasST);
 							}
 						}
 					}else{
 						if ((a = buscaTS(TSL, sgtetoken.attrToken)) == null && (a = buscaTS(TSG, sgtetoken.attrToken)) == null){
-							Errores.escribirError("Analizador semántico", "La variable "+sgtetoken.attrToken+" no se ha declarado anteriormente", AnManager.lineasST);
+							Errores.escribirError("Analizador semï¿½ntico", "La variable "+sgtetoken.attrToken+" no se ha declarado anteriormente", AnManager.lineasST);
 						}else{
 							if(!a.tipo.equals("Entero")){
-								Errores.escribirError("Analizador semántico", "La variable "+sgtetoken.attrToken+" no es de tipo 'Entero' por lo que no es posible hacer predecremento", AnManager.lineasST);
+								Errores.escribirError("Analizador semï¿½ntico", "La variable "+sgtetoken.attrToken+" no es de tipo 'Entero' por lo que no es posible hacer predecremento", AnManager.lineasST);
 							}
 						}
 					}
 
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Debería haber un identificador tras el predecremento", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Deberï¿½a haber un identificador tras el predecremento", AnManager.lineasST);
 				}
 				return;
 			case ")":
@@ -509,7 +509,7 @@ public class AnalizadorSinSem {
 				escribirParse("12");
 				return;
 			default:
-				Errores.escribirError("Analizador sintáctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+				Errores.escribirError("Analizador sintï¿½ctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 				break;
 			}
 		}
@@ -517,14 +517,14 @@ public class AnalizadorSinSem {
 
 	public static void T(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
 			case "int":
 				escribirParse("13");
 
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				T.tipo = "Entero";
 
 				sgtetoken = AnManager.pedirTokenAlex();
@@ -532,7 +532,7 @@ public class AnalizadorSinSem {
 			case "chars":
 				escribirParse("14");
 
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				T.tipo = "Chars";
 
 				sgtetoken = AnManager.pedirTokenAlex();
@@ -540,13 +540,13 @@ public class AnalizadorSinSem {
 			case "bool":
 				escribirParse("15");
 
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				T.tipo = "Bool";
 
 				sgtetoken = AnManager.pedirTokenAlex();
 				return;
 			default:
-				Errores.escribirError("Analizador sintáctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí, debería haber un 'Tipo'", AnManager.lineasST);
+				Errores.escribirError("Analizador sintï¿½ctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½, deberï¿½a haber un 'Tipo'", AnManager.lineasST);
 				break;
 			}	
 		}
@@ -554,20 +554,20 @@ public class AnalizadorSinSem {
 
 	public static void S(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
 			case "ID":
 				escribirParse("16");
 
-				//Analizador semántico:
+				//Analizador semï¿½ntico:
 				itemTS item = null;
 				String lexema = sgtetoken.attrToken;
 
 				//Vamos a comprobar si existe el id en alguna tabla, si no, lo consideramos entero y lo creamos
 				if (functionActual == null){ //Tabla global
-					if ((item = buscaTS(TSG, lexema)) == null){ //No está en la tabla global
+					if ((item = buscaTS(TSG, lexema)) == null){ //No estï¿½ en la tabla global
 						//La consideramos variable entera y la metemos en TSG
 						item = new itemTS();
 						item.tipo = "Entero";
@@ -576,7 +576,7 @@ public class AnalizadorSinSem {
 						TSG.add(item);
 					}
 				}else{
-					if (!lexema.equals(functionActual.lexema)&&(item = buscaTS(TSL, lexema)) == null && (item = buscaTS(TSG, lexema)) == null){ //No está en la tabla global
+					if (!lexema.equals(functionActual.lexema)&&(item = buscaTS(TSL, lexema)) == null && (item = buscaTS(TSG, lexema)) == null){ //No estï¿½ en la tabla global
 						//La consideramos variable entera y la metemos en TSG
 						item = new itemTS();
 						item.tipo = "Entero";
@@ -589,47 +589,47 @@ public class AnalizadorSinSem {
 
 				sgtetoken = AnManager.pedirTokenAlex();
 				Sa();
-				if (Sa.tipo == null){ //Se ha llamado a una función
-					if ((item = buscaTS(TSG, lexema)) == null){ //La función no existe
+				if (Sa.tipo == null){ //Se ha llamado a una funciï¿½n
+					if ((item = buscaTS(TSG, lexema)) == null){ //La funciï¿½n no existe
 						if(functionActual != null && (item = functionActual).lexema.equals(lexema)){ //Puede ser una llamada recursiva
 							int i=0;
 							boolean aux = true;
 							if (item.argumentos == LArgumentos.size()){
 								while(i < item.argumentos){
-									if (!TSL.get(i).tipo.equals(LArgumentos.get(i))){ //Vamos a la tabla de la función y comprobamos las variables correspondientes a los parámetros
+									if (!TSL.get(i).tipo.equals(LArgumentos.get(i))){ //Vamos a la tabla de la funciï¿½n y comprobamos las variables correspondientes a los parï¿½metros
 										aux = false;
 									}
 									i++;
 								}
 								if(!aux){
-									Errores.escribirError("Analizador semántico", "No se ha llamado a la función "+item.lexema+" con los argumentos correctos", AnManager.lineasST-1);	
+									Errores.escribirError("Analizador semï¿½ntico", "No se ha llamado a la funciï¿½n "+item.lexema+" con los argumentos correctos", AnManager.lineasST-1);	
 								}
 							}else{
-								Errores.escribirError("Analizador semántico", "No se ha llamado a la función "+item.lexema+" con los argumentos correctos", AnManager.lineasST-1);	
+								Errores.escribirError("Analizador semï¿½ntico", "No se ha llamado a la funciï¿½n "+item.lexema+" con los argumentos correctos", AnManager.lineasST-1);	
 							}
 					}else{
-						//La función no existe
-						Errores.escribirError("Analizador semántico", "La función "+lexema+" no se ha declarado", AnManager.lineasST-1);
+						//La funciï¿½n no existe
+						Errores.escribirError("Analizador semï¿½ntico", "La funciï¿½n "+lexema+" no se ha declarado", AnManager.lineasST-1);
 					}
 						
-					}else{//La función existe y hay que comprobar si se han utilizado los argumentos correctos
+					}else{//La funciï¿½n existe y hay que comprobar si se han utilizado los argumentos correctos
 						int i=0;
 						boolean aux = true;
 						if (item.argumentos == LArgumentos.size()){
 							while(i < item.argumentos){
-								if (!tablasSimbolos.get(item.entID).get(i).tipo.equals(LArgumentos.get(i))){ //Vamos a la tabla de la función y comprobamos las variables correspondientes a los parámetros
+								if (!tablasSimbolos.get(item.entID).get(i).tipo.equals(LArgumentos.get(i))){ //Vamos a la tabla de la funciï¿½n y comprobamos las variables correspondientes a los parï¿½metros
 									aux = false;
 								}
 								i++;
 							}
 							if(!aux){
-								Errores.escribirError("Analizador semántico", "No se ha llamado a la función "+item.lexema+" con los argumentos correctos", AnManager.lineasST-1);	
+								Errores.escribirError("Analizador semï¿½ntico", "No se ha llamado a la funciï¿½n "+item.lexema+" con los argumentos correctos", AnManager.lineasST-1);	
 							}
 						}
 					}
 				}else{//Se ha asignado valor a un id
 					if (!Sa.tipo.equals(item.tipo)){ //Si no es del mismo tipo, error
-						Errores.escribirError("Analizador semántico", "No se puede asignar un valor de tipo "+Sa.tipo+" a la variable "+ lexema+" de tipo "+ item.tipo, AnManager.lineasST-1);
+						Errores.escribirError("Analizador semï¿½ntico", "No se puede asignar un valor de tipo "+Sa.tipo+" a la variable "+ lexema+" de tipo "+ item.tipo, AnManager.lineasST-1);
 					}
 				}
 				LArgumentos.clear();
@@ -639,27 +639,27 @@ public class AnalizadorSinSem {
 				escribirParse("17");
 				sgtetoken = AnManager.pedirTokenAlex();
 				X();
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				if(functionActual != null){
-					//Si ya Devuelto es false significa que ya se había ejecutado un return
+					//Si ya Devuelto es false significa que ya se habï¿½a ejecutado un return
 					if (X.tipo.equals(functionActual.tipoDevuelto)){
 						if (!condicional){ //Si no estamos en un if, tenemos en cuenta que ya se ha devuelto el valor
 							functionActual.yaDevuelto = true;
 						}
 
 					}else{
-						Errores.escribirError("Analizador semántico","La función "+ functionActual.lexema + " no puede devolver un "+X.tipo+", tiene que devolver un "+functionActual.tipoDevuelto, AnManager.lineasST);
+						Errores.escribirError("Analizador semï¿½ntico","La funciï¿½n "+ functionActual.lexema + " no puede devolver un "+X.tipo+", tiene que devolver un "+functionActual.tipoDevuelto, AnManager.lineasST);
 						functionActual.yaDevuelto = true; //Devuelve algo aunque sea erroneo
 					}
 				}else{
-					Errores.escribirError("Analizador semántico","No se puede ejecutar un return aqui ", AnManager.lineasST);	
+					Errores.escribirError("Analizador semï¿½ntico","No se puede ejecutar un return aqui ", AnManager.lineasST);	
 				}
 
 
 				if (sgtetoken.tipoToken.equals(";")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba ';' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba ';' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					Errores.panicMode();
 				}
 				return;
@@ -670,7 +670,7 @@ public class AnalizadorSinSem {
 				if (sgtetoken.tipoToken.equals("(")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba '(' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba '(' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals("ID")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -684,13 +684,13 @@ public class AnalizadorSinSem {
 
 				if (sgtetoken.tipoToken.equals("ID")){
 					itemTS a;
-					//Analizador semántico:
+					//Analizador semï¿½ntico:
 					if (functionActual == null){
 						if ((a = buscaTS(TSG, sgtetoken.attrToken)) != null){
 							if(a.tipo.equals("Entero") || buscaTS(TSG, sgtetoken.attrToken).tipo.equals("Chars")){
 								//Todo OK
 							}else{
-								Errores.escribirError("Analizador semántico", "La variable "+sgtetoken.attrToken+" no es de tipo 'Entero' o 'Chars'", AnManager.lineasST);
+								Errores.escribirError("Analizador semï¿½ntico", "La variable "+sgtetoken.attrToken+" no es de tipo 'Entero' o 'Chars'", AnManager.lineasST);
 							}
 						}else{ //Si no, la consideramos variable de tipo entero
 							a = new itemTS();
@@ -707,18 +707,18 @@ public class AnalizadorSinSem {
 							a.tipo = "Entero";
 							a.desplazamiento = calculoDesplazamiento("Entero");
 							TSG.add(a);
-						}else{  //Está en la tabla y tenemos que comprobar si es de tipo entero y chars
+						}else{  //Estï¿½ en la tabla y tenemos que comprobar si es de tipo entero y chars
 							if(a.tipo.equals("Entero") || a.tipo.equals("Chars")){
 								//Todo OK
 							}else{
-								Errores.escribirError("Analizador semántico", "La variable "+sgtetoken.attrToken+" no es de tipo 'Entero' o 'Chars'", AnManager.lineasST);
+								Errores.escribirError("Analizador semï¿½ntico", "La variable "+sgtetoken.attrToken+" no es de tipo 'Entero' o 'Chars'", AnManager.lineasST);
 							}
 						}
 					}
 
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba un identificador y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba un identificador y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals(")")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -731,7 +731,7 @@ public class AnalizadorSinSem {
 				if (sgtetoken.tipoToken.equals(")")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba un ')' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba un ')' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals(";")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -744,7 +744,7 @@ public class AnalizadorSinSem {
 				if (sgtetoken.tipoToken.equals(";")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba un ';' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba un ';' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					Errores.panicMode();
 				}
 				return;
@@ -754,18 +754,18 @@ public class AnalizadorSinSem {
 				if (sgtetoken.tipoToken.equals("(")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba '(' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba '(' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					Errores.panicMode();
 				}
 				E();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
 				if (sgtetoken.tipoToken.equals(")")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba un ')' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba un ')' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals(";")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -778,12 +778,12 @@ public class AnalizadorSinSem {
 				if (sgtetoken.tipoToken.equals(";")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba un ';' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba un ';' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					Errores.panicMode();
 				}
 				return;
 			default:
-				Errores.escribirError("Analizador sintáctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+				Errores.escribirError("Analizador sintï¿½ctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 				break;
 			}	
 		}
@@ -791,26 +791,26 @@ public class AnalizadorSinSem {
 
 	public static void Sa(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
-			case "Asignación":
+			case "Asignaciï¿½n":
 				escribirParse("20");
 				sgtetoken = AnManager.pedirTokenAlex();
 				E();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				Sa.tipo = E.tipo;
 
 
 				if (sgtetoken.tipoToken.equals(";")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba ';'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba ';'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					Errores.panicMode();
 				}
 				return;
@@ -819,11 +819,11 @@ public class AnalizadorSinSem {
 				sgtetoken = AnManager.pedirTokenAlex();
 				L();
 				Sa.tipo = null;
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				if (sgtetoken.tipoToken.equals(")")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba ')' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba ')' y se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals(";")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -836,12 +836,12 @@ public class AnalizadorSinSem {
 				if (sgtetoken.tipoToken.equals(";")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba ';'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba ';'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					Errores.panicMode();
 				}
 				return;
 			default:
-				Errores.escribirError("Analizador sintáctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+				Errores.escribirError("Analizador sintï¿½ctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 				break;
 			}
 		}
@@ -849,7 +849,7 @@ public class AnalizadorSinSem {
 
 	public static void X(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -858,79 +858,79 @@ public class AnalizadorSinSem {
 				escribirParse("22");
 				E();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				X.tipo = E.tipo;
 				return;
 			case "Entero":
 				escribirParse("22");
 				E();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				X.tipo = E.tipo;
 				return;
 			case "Cadena":
 				escribirParse("22");
 				E();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				X.tipo = E.tipo;
 				return;
 			case "Predecremento":
 				escribirParse("22");
 				E();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				X.tipo = E.tipo;
 				return;
 			case "true":
 				escribirParse("22");
 				E();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				X.tipo = E.tipo;
 				return;
 			case "false":
 				escribirParse("22");
 				E();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				X.tipo = E.tipo;
 				return;
 			case "(":
 				escribirParse("22");
 				E();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				X.tipo = E.tipo;
 				return;
 			case ";": //Follow
 				escribirParse("23");
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				X.tipo = "Void";
 				return; 
 			default:
-				Errores.escribirError("Analizador sintáctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+				Errores.escribirError("Analizador sintï¿½ctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 				break;
 			}	
 		}
@@ -938,82 +938,82 @@ public class AnalizadorSinSem {
 
 	public static void C(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
 			//First B
 			case "var":
 				escribirParse("24");
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				//Vamos a comprobar si ya se ha ejecutado return en la funcion (en el caso de que estemos)
 				if (functionActual != null && functionActual.yaDevuelto){
-					Errores.escribirError("Analizador semántico", "Lo que haya tras el return no se ejecutará", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "Lo que haya tras el return no se ejecutarï¿½", AnManager.lineasST);
 				}
 				B();
 				C();
 				return;
 			case "if":
 				escribirParse("24");
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				//Vamos a comprobar si ya se ha ejecutado return en la funcion (en el caso de que estemos)
 				if (functionActual != null && functionActual.yaDevuelto){
-					Errores.escribirError("Analizador semántico", "Lo que haya tras el return no se ejecutará", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "Lo que haya tras el return no se ejecutarï¿½", AnManager.lineasST);
 				}
 				B();
 				C();
 				return;
 			case "ID":
 				escribirParse("24");
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				//Vamos a comprobar si ya se ha ejecutado return en la funcion (en el caso de que estemos)
 				if (functionActual != null && functionActual.yaDevuelto){
-					Errores.escribirError("Analizador semántico", "Lo que haya tras el return no se ejecutará", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "Lo que haya tras el return no se ejecutarï¿½", AnManager.lineasST);
 				}
 				B();
 				C();
 				return;
 			case "return":
 				escribirParse("24");
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				//Vamos a comprobar si ya se ha ejecutado return en la funcion (en el caso de que estemos)
 				if (functionActual != null && functionActual.yaDevuelto){
-					Errores.escribirError("Analizador semántico", "Lo que haya tras el return no se ejecutará", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "Lo que haya tras el return no se ejecutarï¿½", AnManager.lineasST);
 				}
 				B();
 				C();
 				return;
 			case "write":
 				escribirParse("24");
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				//Vamos a comprobar si ya se ha ejecutado return en la funcion (en el caso de que estemos)
 				if (functionActual != null && functionActual.yaDevuelto){
-					Errores.escribirError("Analizador semántico", "Lo que haya tras el return no se ejecutará", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "Lo que haya tras el return no se ejecutarï¿½", AnManager.lineasST);
 				}
 				B();
 				C();
 				return;
 			case "prompt":
 				escribirParse("24");
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				//Vamos a comprobar si ya se ha ejecutado return en la funcion (en el caso de que estemos)
 				if (functionActual != null && functionActual.yaDevuelto){
-					Errores.escribirError("Analizador semántico", "Lo que haya tras el return no se ejecutará", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "Lo que haya tras el return no se ejecutarï¿½", AnManager.lineasST);
 				}
 				B();
 				C();
 				return;
 			case "for":
 				escribirParse("24");
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				//Vamos a comprobar si ya se ha ejecutado return en la funcion (en el caso de que estemos)
 				if (functionActual != null && functionActual.yaDevuelto){
-					Errores.escribirError("Analizador semántico", "Lo que haya tras el return no se ejecutará", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "Lo que haya tras el return no se ejecutarï¿½", AnManager.lineasST);
 				}
 				B();
 				C();
 				return;
-			case "EOL":	//Tenemos en cuenta aquí el salto de línea, pero no lo meteremos en el árbol
+			case "EOL":	//Tenemos en cuenta aquï¿½ el salto de lï¿½nea, pero no lo meteremos en el ï¿½rbol
 				sgtetoken = AnManager.pedirTokenAlex();
 				C();
 				return;
@@ -1022,7 +1022,7 @@ public class AnalizadorSinSem {
 				escribirParse("25");
 				return;
 			default:
-				Errores.escribirError("Analizador sintáctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+				Errores.escribirError("Analizador sintï¿½ctico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 				//En el caso de que haya funcion anidada
 				if (sgtetoken.tipoToken.equals("function")){
 					Errores.panicModeLlaves(0);
@@ -1035,7 +1035,7 @@ public class AnalizadorSinSem {
 
 	public static void F(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			if (sgtetoken.tipoToken.equals("function")){
@@ -1044,10 +1044,10 @@ public class AnalizadorSinSem {
 				escribirParse("26");
 				H();
 				if (sgtetoken.tipoToken.equals("ID")){
-					//Analizador semántico
+					//Analizador semï¿½ntico
 					if ((functionActual = buscaTS(TSG, sgtetoken.attrToken)) != null){
-						Errores.escribirError("Analizador semántico", "La función "+sgtetoken.attrToken+" ya se ha declarado anteriormente", AnManager.lineasST);
-						//Seguiremos analizando normalmente pero no la añadiremos a la tabla final
+						Errores.escribirError("Analizador semï¿½ntico", "La funciï¿½n "+sgtetoken.attrToken+" ya se ha declarado anteriormente", AnManager.lineasST);
+						//Seguiremos analizando normalmente pero no la aï¿½adiremos a la tabla final
 						functionActual = new itemTS();
 						functionActual.tipo = "Null";
 						functionActual.tipoDevuelto = H.tipo;
@@ -1057,7 +1057,7 @@ public class AnalizadorSinSem {
 						functionActual.yaDevuelto = false;
 					}else{
 						functionActual = new itemTS();
-						functionActual.tipo = "Función";
+						functionActual.tipo = "Funciï¿½n";
 						functionActual.tipoDevuelto = H.tipo;
 						functionActual.lexema = sgtetoken.attrToken;
 						tituloFunciones.add(sgtetoken.attrToken);
@@ -1069,7 +1069,7 @@ public class AnalizadorSinSem {
 
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba un identificador en 'function'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba un identificador en 'function'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals("(")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -1082,18 +1082,18 @@ public class AnalizadorSinSem {
 				if (sgtetoken.tipoToken.equals("(")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba '('. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba '('. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 						Errores.panicModeLlaves(0);;
 						return;
 					
 				}
 				A();
-				//Ya se han añadido los argumentos a la correspondiente tabla e itemTS
+				//Ya se han aï¿½adido los argumentos a la correspondiente tabla e itemTS
 				if (sgtetoken.tipoToken.equals(")")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba ')'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba ')'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals("EOL") || AnManager.comprobarSiguienteToken().tipoToken.equals("{")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
@@ -1103,25 +1103,25 @@ public class AnalizadorSinSem {
 						return;
 					}
 				}
-				if (sgtetoken.tipoToken.equals("EOL")){ //Permitimos aqui un salto de línea
+				if (sgtetoken.tipoToken.equals("EOL")){ //Permitimos aqui un salto de lï¿½nea
 					sgtetoken = AnManager.pedirTokenAlex();
 				}
 				if (sgtetoken.tipoToken.equals("{")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba '{'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba '{'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 						Errores.panicModeLlaves(1);
 						return;
 				}
 				C();
-				if (sgtetoken.tipoToken.equals("EOL")){ //Permitimos aqui un salto de línea (En el caso de que haya habido error)
+				if (sgtetoken.tipoToken.equals("EOL")){ //Permitimos aqui un salto de lï¿½nea (En el caso de que haya habido error)
 					sgtetoken = AnManager.pedirTokenAlex();
 				}
 				if(!functionActual.yaDevuelto && !functionActual.tipoDevuelto.equals("Void")){
-					Errores.escribirError("Analizador semántico", "No devuelve nada la función "+functionActual.lexema, AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No devuelve nada la funciï¿½n "+functionActual.lexema, AnManager.lineasST);
 				}
-				//El valor devuelto ya estaría comprobado
-				//Insertamos todos los datos de la funcion en la tabla de símbolos
+				//El valor devuelto ya estarï¿½a comprobado
+				//Insertamos todos los datos de la funcion en la tabla de sï¿½mbolos
 				//Si es error no la guardamos
 				if (!functionActual.tipo.equals("Null")){
 				ArrayList<itemTS> copy = new ArrayList<itemTS>(TSL);
@@ -1132,7 +1132,7 @@ public class AnalizadorSinSem {
 				}
 				functionActual.entID = idFunction;
 				idFunction++;
-				TSG.add(functionActual); //Añadimos a la tabla global
+				TSG.add(functionActual); //Aï¿½adimos a la tabla global
 				}
 				//Reiniciamos variables
 				TSL.clear();
@@ -1142,11 +1142,11 @@ public class AnalizadorSinSem {
 				if (sgtetoken.tipoToken.equals("}")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba '}'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba '}'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					return;
 				}	
 			}else{
-				Errores.escribirError("Analizador sintáctico", "Se esperaba ';'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+				Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba ';'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 				Errores.panicMode();
 				return;
 			}
@@ -1155,7 +1155,7 @@ public class AnalizadorSinSem {
 
 	public static void H(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			//First T
@@ -1164,7 +1164,7 @@ public class AnalizadorSinSem {
 				escribirParse("27");
 				T();
 
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				H.tipo = "Entero";
 
 				return;
@@ -1172,7 +1172,7 @@ public class AnalizadorSinSem {
 				escribirParse("27");
 				T();
 
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				H.tipo = "Chars";
 
 				return;
@@ -1180,7 +1180,7 @@ public class AnalizadorSinSem {
 				escribirParse("27");
 				T();
 
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				H.tipo = "Bool";
 
 				return;
@@ -1188,12 +1188,12 @@ public class AnalizadorSinSem {
 			case "ID":
 				escribirParse("28");
 
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				H.tipo = "Void";
 
 				return;
 			default:
-				Errores.escribirError("Analizador sintáctico", "Se debe poner un 'Tipo' o un 'Identificador' tras 'function'", AnManager.lineasST);
+				Errores.escribirError("Analizador sintï¿½ctico", "Se debe poner un 'Tipo' o un 'Identificador' tras 'function'", AnManager.lineasST);
 				break;
 			}	
 		}
@@ -1201,7 +1201,7 @@ public class AnalizadorSinSem {
 
 	public static void A(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -1210,9 +1210,9 @@ public class AnalizadorSinSem {
 				escribirParse("29");
 				T();
 
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				if (sgtetoken.tipoToken.equals("ID")){
-					//También tenemos que añadir los parámetros a la TS
+					//Tambiï¿½n tenemos que aï¿½adir los parï¿½metros a la TS
 					itemTS a= new itemTS();
 					a.lexema = sgtetoken.attrToken;
 					a.tipo = T.tipo;
@@ -1221,7 +1221,7 @@ public class AnalizadorSinSem {
 					TSL.add(a);
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba un identificador. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba un identificador. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					return;
 				}	
 				K();
@@ -1230,9 +1230,9 @@ public class AnalizadorSinSem {
 				escribirParse("29");
 				T();
 
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				if (sgtetoken.tipoToken.equals("ID")){
-					//También tenemos que añadir los parámetros a la TS
+					//Tambiï¿½n tenemos que aï¿½adir los parï¿½metros a la TS
 					itemTS a= new itemTS();
 					a.lexema = sgtetoken.attrToken;
 					a.tipo = T.tipo;
@@ -1242,7 +1242,7 @@ public class AnalizadorSinSem {
 
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba un identificador. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba un identificador. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 				return;
 				}	
 				K();
@@ -1251,9 +1251,9 @@ public class AnalizadorSinSem {
 				escribirParse("29");
 				T();
 
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				if (sgtetoken.tipoToken.equals("ID")){
-					//También tenemos que añadir los parámetros a la TS
+					//Tambiï¿½n tenemos que aï¿½adir los parï¿½metros a la TS
 					itemTS a= new itemTS();
 					a.lexema = sgtetoken.attrToken;
 					a.tipo = T.tipo;
@@ -1262,7 +1262,7 @@ public class AnalizadorSinSem {
 					TSL.add(a);
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba un identificador. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba un identificador. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 				return;
 				}	
 				K();
@@ -1272,7 +1272,7 @@ public class AnalizadorSinSem {
 				escribirParse("30");
 				return;
 			default:
-				Errores.escribirError("Analizador sintáctico", "Falta el 'Tipo' del parámetro que recibe la función", AnManager.lineasST);
+				Errores.escribirError("Analizador sintï¿½ctico", "Falta el 'Tipo' del parï¿½metro que recibe la funciï¿½n", AnManager.lineasST);
 				if (sgtetoken.tipoToken.equals("ID")){ //Se ha olvidado el tipo.
 					sgtetoken = AnManager.pedirTokenAlex();
 				}	
@@ -1283,7 +1283,7 @@ public class AnalizadorSinSem {
 
 	public static void K(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -1292,9 +1292,9 @@ public class AnalizadorSinSem {
 				sgtetoken = AnManager.pedirTokenAlex();
 				T();
 
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				if (sgtetoken.tipoToken.equals("ID")){
-					//añadir los parámetros a la TS
+					//aï¿½adir los parï¿½metros a la TS
 					itemTS a= new itemTS();
 					a.lexema = sgtetoken.attrToken;
 					a.tipo = T.tipo;
@@ -1304,7 +1304,7 @@ public class AnalizadorSinSem {
 					sgtetoken = AnManager.pedirTokenAlex();
 					K();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba un identificador. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba un identificador. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 				return;
 				}	
 				return;
@@ -1320,7 +1320,7 @@ public class AnalizadorSinSem {
 
 	public static void L(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -1332,7 +1332,7 @@ public class AnalizadorSinSem {
 				LArgumentos.add(E.tipo);
 				Q();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
 				return;
@@ -1343,7 +1343,7 @@ public class AnalizadorSinSem {
 				LArgumentos.add(E.tipo);
 				Q();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
 				return;
@@ -1354,7 +1354,7 @@ public class AnalizadorSinSem {
 				LArgumentos.add(E.tipo);
 				Q();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
 				return;
@@ -1365,7 +1365,7 @@ public class AnalizadorSinSem {
 				LArgumentos.add(E.tipo);
 				Q();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
 				return;
@@ -1376,7 +1376,7 @@ public class AnalizadorSinSem {
 				LArgumentos.add(E.tipo);
 				Q();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
 				return;
@@ -1387,7 +1387,7 @@ public class AnalizadorSinSem {
 				LArgumentos.add(E.tipo);
 				Q();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
 				return;
@@ -1398,7 +1398,7 @@ public class AnalizadorSinSem {
 				LArgumentos.add(E.tipo);
 				Q();
 				if (EhayError){	
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 					EhayError = false;
 				}
 				return;
@@ -1413,7 +1413,7 @@ public class AnalizadorSinSem {
 	}
 	public static void Q(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -1436,7 +1436,7 @@ public class AnalizadorSinSem {
 
 	public static void E(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -1457,7 +1457,7 @@ public class AnalizadorSinSem {
 
 				if (EhayError){
 					EhayError = false;
-					Errores.escribirError("Analizador semántico", "No es correcta la expresión", AnManager.lineasST);
+					Errores.escribirError("Analizador semï¿½ntico", "No es correcta la expresiï¿½n", AnManager.lineasST);
 				}
 
 				return;
@@ -1553,7 +1553,7 @@ public class AnalizadorSinSem {
 
 	public static void Ea(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -1584,7 +1584,7 @@ public class AnalizadorSinSem {
 
 	public static void R(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -1703,7 +1703,7 @@ public class AnalizadorSinSem {
 
 	public static void Ra(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -1737,7 +1737,7 @@ public class AnalizadorSinSem {
 	}
 	public static void U(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -1848,7 +1848,7 @@ public class AnalizadorSinSem {
 
 	public static void Ua(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -1857,7 +1857,7 @@ public class AnalizadorSinSem {
 				sgtetoken = AnManager.pedirTokenAlex();
 				U();
 				UaSuma = true;
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				if (!V.tipo.equals("Entero")){
 					EhayError = true;
 				}
@@ -1887,7 +1887,7 @@ public class AnalizadorSinSem {
 
 	public static void V(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -1896,14 +1896,14 @@ public class AnalizadorSinSem {
 				String lexema = sgtetoken.attrToken;
 				sgtetoken = AnManager.pedirTokenAlex();
 				Va();
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				itemTS a;
-				if (llamadaFuncion){ //Se ha llamado a una función
+				if (llamadaFuncion){ //Se ha llamado a una funciï¿½n
 					int i=0;
 					boolean aux = true;
 					ArrayList<itemTS> copia;
-					if ((a = buscaTS(TSG, lexema)) == null){ //No existe la función
-						//Comprobamos si se está haciendo una llamada recursiva:
+					if ((a = buscaTS(TSG, lexema)) == null){ //No existe la funciï¿½n
+						//Comprobamos si se estï¿½ haciendo una llamada recursiva:
 						if(functionActual != null && (a = functionActual).lexema.equals(lexema)){
 							V.tipo = a.tipoDevuelto;
 							copia = new ArrayList<itemTS>(TSL);
@@ -1915,16 +1915,16 @@ public class AnalizadorSinSem {
 									i++;
 								}
 								if(!aux){
-									Errores.escribirError("Analizador semántico", "No se ha llamado a la función "+lexema+" con los argumentos correctos", AnManager.lineasST);	
+									Errores.escribirError("Analizador semï¿½ntico", "No se ha llamado a la funciï¿½n "+lexema+" con los argumentos correctos", AnManager.lineasST);	
 								}
 							}else{
-								Errores.escribirError("Analizador semántico", "No se ha llamado a la función "+lexema+" con los argumentos correctos", AnManager.lineasST);	
+								Errores.escribirError("Analizador semï¿½ntico", "No se ha llamado a la funciï¿½n "+lexema+" con los argumentos correctos", AnManager.lineasST);	
 							}
 							copia.clear();
 						}else{
-							Errores.escribirError("Analizador semántico", "La función "+lexema+" no se ha declarado", AnManager.lineasST);
+							Errores.escribirError("Analizador semï¿½ntico", "La funciï¿½n "+lexema+" no se ha declarado", AnManager.lineasST);
 						}
-					}else{ //Existe la función
+					}else{ //Existe la funciï¿½n
 						V.tipo = a.tipoDevuelto;
 						copia = new ArrayList<itemTS>(tablasSimbolos.get(a.entID));
 						if (VaArgumentos.size() == a.argumentos){
@@ -1935,18 +1935,18 @@ public class AnalizadorSinSem {
 								i++;
 							}
 							if(!aux){
-								Errores.escribirError("Analizador semántico", "No se ha llamado a la función "+lexema+" con los argumentos correctos", AnManager.lineasST);	
+								Errores.escribirError("Analizador semï¿½ntico", "No se ha llamado a la funciï¿½n "+lexema+" con los argumentos correctos", AnManager.lineasST);	
 							}
 						}else{
-							Errores.escribirError("Analizador semántico", "No se ha llamado a la función "+lexema+" con los argumentos correctos", AnManager.lineasST);	
+							Errores.escribirError("Analizador semï¿½ntico", "No se ha llamado a la funciï¿½n "+lexema+" con los argumentos correctos", AnManager.lineasST);	
 						}
 						copia.clear();
 					}
 					llamadaFuncion = false;
-				}else{ //No se ha llamado a una función, se ha llamado una variable.
+				}else{ //No se ha llamado a una funciï¿½n, se ha llamado una variable.
 					if (functionActual == null){ //Si no hay local, buscamos en la global
 						if ((a = buscaTS(TSG, lexema)) == null){
-							Errores.escribirError("Analizador semántico", "La variable "+lexema+" no se ha declarado anteriormente", AnManager.lineasST);
+							Errores.escribirError("Analizador semï¿½ntico", "La variable "+lexema+" no se ha declarado anteriormente", AnManager.lineasST);
 						}else{
 							V.tipo = a.tipo;
 						}
@@ -1954,7 +1954,7 @@ public class AnalizadorSinSem {
 						if ((a = buscaTS(TSL, lexema)) != null || (a = buscaTS(TSG, lexema)) != null){
 							V.tipo = a.tipo;
 						}else{
-							Errores.escribirError("Analizador semántico", "La variable "+lexema+" no se ha declarado anteriormente", AnManager.lineasST);
+							Errores.escribirError("Analizador semï¿½ntico", "La variable "+lexema+" no se ha declarado anteriormente", AnManager.lineasST);
 						}
 					}
 				}
@@ -1974,29 +1974,29 @@ public class AnalizadorSinSem {
 				V.tipo = "Entero";
 				sgtetoken = AnManager.pedirTokenAlex();
 				if (sgtetoken.tipoToken.equals("ID")){
-					//Analizador semántico:
+					//Analizador semï¿½ntico:
 					itemTS a1 = new itemTS();
 					if (functionActual == null){ //Si no hay local, buscamos en la global
 						if ((a1=buscaTS(TSG, sgtetoken.attrToken)) == null){
 
 						}else{
 							if (!a1.tipo.equals("Entero")){
-								Errores.escribirError("Analizador semántico", "La variable "+sgtetoken.attrToken+" debe ser de tipo 'Entero'", AnManager.lineasST);
+								Errores.escribirError("Analizador semï¿½ntico", "La variable "+sgtetoken.attrToken+" debe ser de tipo 'Entero'", AnManager.lineasST);
 							}
 						}
 					}else{//Si hay local, buscamos en la tabla local
 						if ((a1=buscaTS(TSL, sgtetoken.attrToken)) != null || (a1=buscaTS(TSG, sgtetoken.attrToken)) != null){
 							if (!a1.tipo.equals("Entero")){
-								Errores.escribirError("Analizador semántico", "La variable "+sgtetoken.attrToken+" debe ser de tipo 'Entero'", AnManager.lineasST);
+								Errores.escribirError("Analizador semï¿½ntico", "La variable "+sgtetoken.attrToken+" debe ser de tipo 'Entero'", AnManager.lineasST);
 							}
 						}else{
-							Errores.escribirError("Analizador semántico", "La variable "+sgtetoken.attrToken+" no se ha declarado anteriormente", AnManager.lineasST);
+							Errores.escribirError("Analizador semï¿½ntico", "La variable "+sgtetoken.attrToken+" no se ha declarado anteriormente", AnManager.lineasST);
 						}
 					}
 
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Se esperaba un identificador. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquí", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Se esperaba un identificador. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aquï¿½", AnManager.lineasST);
 					return;
 				}	
 				return;
@@ -2018,7 +2018,7 @@ public class AnalizadorSinSem {
 				if (sgtetoken.tipoToken.equals(")")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Falta el cierre de un paréntesis", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Falta el cierre de un parï¿½ntesis", AnManager.lineasST);
 				}	
 				return;
 			default:
@@ -2029,7 +2029,7 @@ public class AnalizadorSinSem {
 
 	public static void Va(){
 		if (sgtetoken == null){
-			Errores.escribirError("Analizador sintáctico", "No hay mas tokens", AnManager.lineasST);
+			Errores.escribirError("Analizador sintï¿½ctico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
 			switch(sgtetoken.tipoToken){
@@ -2037,13 +2037,13 @@ public class AnalizadorSinSem {
 				escribirParse("54");
 				sgtetoken = AnManager.pedirTokenAlex();
 				L();
-				//Analizador semántico
+				//Analizador semï¿½ntico
 				VaArgumentos = LArgumentos;
 				llamadaFuncion=true;
 				if (sgtetoken.tipoToken.equals(")")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
-					Errores.escribirError("Analizador sintáctico", "Falta el cierre de un paréntesis", AnManager.lineasST);
+					Errores.escribirError("Analizador sintï¿½ctico", "Falta el cierre de un parï¿½ntesis", AnManager.lineasST);
 				}	
 				return;
 				//Follow Va
@@ -2076,7 +2076,7 @@ public class AnalizadorSinSem {
 			}	
 		}
 	}
-	//-----Funciones del analizador sintáctico--------------------
+	//-----Funciones del analizador sintï¿½ctico--------------------
 	//Generamos el archivo "Parse"
 	public static void genArchivoParse(){
 		String path = AnManager.getPath() + File.separator +"Resultados Grupo144" + File.separator+ "Parse.txt";
@@ -2089,7 +2089,7 @@ public class AnalizadorSinSem {
 			JOptionPane.showMessageDialog(null, "Fallo al crear archivo parse");
 		}
 	}
-	//Función para escribir en el archivo "Parse"
+	//Funciï¿½n para escribir en el archivo "Parse"
 	public static void escribirParse(String dato){
 		PrintWriter pw = null;
 		try {
@@ -2107,8 +2107,8 @@ public class AnalizadorSinSem {
 	}
 
 
-	//-----Funciones del analizador semántico--------------------
-	//Funcion que comprueba si existe ya en la tabla de símbolos
+	//-----Funciones del analizador semï¿½ntico--------------------
+	//Funcion que comprueba si existe ya en la tabla de sï¿½mbolos
 	public static itemTS buscaTS(ArrayList <itemTS> TS, String lex){
 		int i = 0;
 		if (TS != null){
@@ -2135,23 +2135,23 @@ public class AnalizadorSinSem {
 		}
 		return -1;
 	}
-	//Generamos el archivo "Tabla de Símbolos"
+	//Generamos el archivo "Tabla de Sï¿½mbolos"
 	public static void genArchivoTS(){
-		String path = AnManager.getPath() + File.separator +"Resultados Grupo144" + File.separator+ "Tabla de Símbolos.txt";
+		String path = AnManager.getPath() + File.separator +"Resultados Grupo81" + File.separator+ "Tabla de Simbolos.txt";
 		File f = new File(path);
 		f.getParentFile().mkdirs(); 
 		try {
 			f.delete(); //Eliminamos si existe algo antes
 			f.createNewFile();
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Fallo al crear archivo Tabla de Símbolos");
+			JOptionPane.showMessageDialog(null, "Fallo al crear archivo Tabla de Sï¿½mbolos");
 		}
 	}
-	//Función que imprime todas las tablas de símbolos generadas
+	//Funciï¿½n que imprime todas las tablas de sï¿½mbolos generadas
 	public static void imprimirTablas(){
 		PrintWriter pw = null;
 		try {
-			File file = new File(AnManager.getPath() + File.separator +"Resultados Grupo144" + File.separator+ "Tabla de Símbolos.txt");
+			File file = new File(AnManager.getPath() + File.separator +"Resultados Grupo81" + File.separator+ "Tabla de Simbolos.txt");
 			FileWriter fw = new FileWriter(file, true);
 			pw = new PrintWriter(fw);
 
@@ -2160,10 +2160,10 @@ public class AnalizadorSinSem {
 			pw.println("TABLA GLOBAL #1 :"); //Tabla global
 			pw.println(""); //Espacio
 			while(i<tablasSimbolos.get(0).size()){
-				if (tablasSimbolos.get(0).get(i).tipo.equals("Función")){ //Si es una función:
-					pw.println("  * LEXEMA: '"+tablasSimbolos.get(0).get(i).lexema+"' (Función)");
+				if (tablasSimbolos.get(0).get(i).tipo.equals("Funcion")){ //Si es una funciï¿½n:
+					pw.println("  * LEXEMA: '"+tablasSimbolos.get(0).get(i).lexema+"' (Funcion)");
 					pw.println("	+ TipoDevuelto: '"+tablasSimbolos.get(0).get(i).tipoDevuelto+"'");
-					pw.println("	+ NºParámetros: '"+tablasSimbolos.get(0).get(i).argumentos+"'");
+					pw.println("	+ NoParametros: '"+tablasSimbolos.get(0).get(i).argumentos+"'");
 					pw.println("");
 				}else{
 					pw.println("  * LEXEMA: '"+tablasSimbolos.get(0).get(i).lexema+"'");
@@ -2175,20 +2175,20 @@ public class AnalizadorSinSem {
 				i++;
 			}
 			pw.println("-----------------------------------------------------------------------"); 
-			//Ahora introducimos las demás tablas
+			//Ahora introducimos las demï¿½s tablas
 
 			int j = 0;
 			int x;
 			int argumentos;
 			while(j<tituloFunciones.size()){
 				x = 0;
-				pw.println("TABLA DE LA FUNCIÓN "+tituloFunciones.get(j)+" #"+(j+2)+" :"); //Tabla local
+				pw.println("TABLA DE LA FUNCIï¿½N "+tituloFunciones.get(j)+" #"+(j+2)+" :"); //Tabla local
 				pw.println(""); //Espacio
 				desplazamiento = 0;
 				argumentos = 0;
 				while(x < tablasSimbolos.get(j+1).size()){
 					if (argumentos != buscaTS(TSG, tituloFunciones.get(j)).argumentos){
-						pw.println("  * LEXEMA: '"+tablasSimbolos.get(j+1).get(x).lexema+"' (parámetro de función)");
+						pw.println("  * LEXEMA: '"+tablasSimbolos.get(j+1).get(x).lexema+"' (parametro de funcioï¿½n)");
 						argumentos++;
 					}else{
 						pw.println("  * LEXEMA: '"+tablasSimbolos.get(j+1).get(x).lexema+"'");
