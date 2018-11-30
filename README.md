@@ -40,43 +40,43 @@ Negación (!).
 - **Identificadores**
 Los nombres de identificadores están formados por cualquier cantidad de letras,dígitos y subrayados (\_), siendo el primero siempre una letra. Ejemplos: a, a3, A3, Sueldo\_de\_Trabajador, z\_9\_9\_\_...
 
-	Como ya se ha dicho, el lenguaje es dependiente de minúsculas o mayúsculas, por lo que los nombres a3 y A3 referencian a identificadores distintos.
+Como ya se ha dicho, el lenguaje es dependiente de minúsculas o mayúsculas, por lo que los nombres a3 y A3 referencian a identificadores distintos.
 
 - **Declaraciones**
 El lenguaje JavaScript-PL no exige declaración de las variables que se utilicen. En el caso de que se use un nombre de variable que no ha sido declarado previamente, se considera que dicha variable es global y entera.
 
-	Para realizar una declaración de una variable, se coloca la palabra var seguida del tipo y del nombre de la variable. Se puede poner una lista de variables separadas por comas:
+Para realizar una declaración de una variable, se coloca la palabra var seguida del tipo y del nombre de la variable. Se puede poner una lista de variables separadas por comas:
 ```
 	var Tipo var0;
 	var Tipo var1, var2, var3;	// se declaran las tres variables
 ```
 
-	Pueden realizarse declaraciones en cualquier lugar de un bloque de una función; en este caso, la variable será visible desde ese punto hasta el final de la función. También pueden realizarse declaraciones fuera de las funciones en cualquier parte del código (variables globales), siendo solo visibles desde ese punto hasta el final del fichero.
+Pueden realizarse declaraciones en cualquier lugar de un bloque de una función; en este caso, la variable será visible desde ese punto hasta el final de la función. También pueden realizarse declaraciones fuera de las funciones en cualquier parte del código (variables globales), siendo solo visibles desde ese punto hasta el final del fichero.
 
-	Opcionalmente, puede inicializarse una variable en la misma instrucción de la declaración, colocando detrás del nombre de la variable el operador de asignación (=) seguido de una expresión.
+Opcionalmente, puede inicializarse una variable en la misma instrucción de la declaración, colocando detrás del nombre de la variable el operador de asignación (=) seguido de una expresión.
 	
 ```
 	var Tipo var4 = expresión4, var5 = expresión5;
 ```
 
-	Si una variable no se inicializa cuando se declara se realiza una inicialización por omisión basándose en su tipo: 0 si es entera, falso si es lógica y la cadena vacía ("") si es cadena.
+Si una variable no se inicializa cuando se declara se realiza una inicialización por omisión basándose en su tipo: 0 si es entera, falso si es lógica y la cadena vacía ("") si es cadena.
 
-	El ámbito de una variable será global si no se ha declarado o si se declara fuera de cualquier función, y será local si se declara dentro del cuerpo de una función. No se admite la redeclaración del mismo identificador en un mismo ámbito.
+El ámbito de una variable será global si no se ha declarado o si se declara fuera de cualquier función, y será local si se declara dentro del cuerpo de una función. No se admite la redeclaración del mismo identificador en un mismo ámbito.
 
 - **Tipos de Datos**
 El lenguaje dispone de distintos tipos de datos básicos.
 
-	Se deben considerar sólo los siguientes tipos de datos básicos: **entero**, **lógico** y **cadena**.
+Se deben considerar sólo los siguientes tipos de datos básicos: **entero**, **lógico** y **cadena**.
 
-	El tipo entero se refiere a un entero que debe representarse con un tamaño de 16 bits. Se representa con la palabra int.
+El tipo entero se refiere a un entero que debe representarse con un tamaño de 16 bits. Se representa con la palabra int.
 
-	El tipo lógico permite representar valores lógicos. Las expresiones relacionales y lógicas devuelven un valor lógico. Se representa con la palabra bool.
+El tipo lógico permite representar valores lógicos. Las expresiones relacionales y lógicas devuelven un valor lógico. Se representa con la palabra bool.
 
-	El tipo cadena permite representar secuencias de caracteres. Se representa con la palabra string.
+El tipo cadena permite representar secuencias de caracteres. Se representa con la palabra string.
 
-	El lenguaje no tiene conversiones automáticas entre tipos.
+El lenguaje no tiene conversiones automáticas entre tipos.
 
-	Ejemplos:
+Ejemplos:
 ```
 	var int i = 11;    // variable entera
 	var string st;     // variable cadena 
@@ -94,16 +94,16 @@ La sentencia print (expresión) evalúa la expresión e imprime el resultado por
 	a= 50; print(a * 2 + 16); /* imprime: 116 */
 ```
 
-	La expresión puede ser también una cadena o un lógico. Por ejemplo:
+La expresión puede ser también una cadena o un lógico. Por ejemplo:
 ```
 	a= 'Adiós';
 	print('Hola'); print(a); /* imprime HolaAdiós */
 ```
-	Se admite poner varias expresiones en print separadas por comas (implementación opcional):
+Se admite poner varias expresiones en print separadas por comas (implementación opcional):
 ```
 	print ("El factorial de ", num, " es ", fact(num), ".\n");
 ```
-	La sentencia prompt (var) lee un número o una cadena del teclado y lo almacena en la variable var, que tiene que ser, respectivamente, de tipo entero o cadena. Por ejemplo:
+La sentencia prompt (var) lee un número o una cadena del teclado y lo almacena en la variable var, que tiene que ser, respectivamente, de tipo entero o cadena. Por ejemplo:
 ```
 	var int a;
 	var string c;
@@ -117,12 +117,12 @@ La sentencia print (expresión) evalúa la expresión e imprime el resultado por
 De todo el grupo de sentencias del lenguaje JavaScript, se han seleccionado para ser implementadas las que aparecen a continuación [opcional u obligatoriamente, según se indique en cada caso]:
 
 	 - **Sentencias de Asignación**
-    Existe una sentencia de asignación en JavaScript-PL, que se construye mediante el símbolo de asignación = . Su sintaxis general es la siguiente: identificador, igual y expresión. Esta sentencia asigna al identificador el resultado de evaluar la expresión:
+Existe una sentencia de asignación en JavaScript-PL, que se construye mediante el símbolo de asignación = . Su sintaxis general es la siguiente: identificador, igual y expresión. Esta sentencia asigna al identificador el resultado de evaluar la expresión:
 ```
 	i= 8 + 6;
 ```
 
-		Como ya se ha indicado, no hay conversiones entre tipos, por lo que tanto el identificador como la expresión han de ser del mismo tipo.
+Como ya se ha indicado, no hay conversiones entre tipos, por lo que tanto el identificador como la expresión han de ser del mismo tipo.
 ```
 		var int i = 123;	// i es una variable entera
 		var string cad;
@@ -133,25 +133,24 @@ De todo el grupo de sentencias del lenguaje JavaScript, se han seleccionado para
 ```
 
 	- **Sentencia de Llamada a una Función**
-		Esta sentencia permite invocar la ejecución de una función que debe estar previamente definida .
+Esta sentencia permite invocar la ejecución de una función que debe estar previamente definida .
 
-		La llamada a una función se realiza mediante el nombre de la función seguido de los argumentos actuales (separados por comas) entre paréntesis (si no tiene argumentos, hay que poner los paréntesis vacíos). Los argumentos pueden ser cualquier expresión:
+La llamada a una función se realiza mediante el nombre de la función seguido de los argumentos actuales (separados por comas) entre paréntesis (si no tiene argumentos, hay que poner los paréntesis vacíos). Los argumentos pueden ser cualquier expresión:
 ```
 		p1 (5);        /* llamada a una función con un argumento entero */ 
 		p2 ();         /* llamada sin argumentos a una función */ 
 		p3 (b, i - 8); /* llamada con dos argumentos a una función */
 ```
-		Los parámetros actuales en la llamada tienen que coincidir en número y tipo con los parámetros formales de la declaración de la función.
+Los parámetros actuales en la llamada tienen que coincidir en número y tipo con los parámetros formales de la declaración de la función.
 
-		Si una función devuelve un valor, podrá incluirse una llamada a dicha función dentro de cualquier expresión. Si la llamada se realiza como una sentencia (no se realiza en una expresión), se invocará a la función pero el valor devuelto se perderá:
+Si una función devuelve un valor, podrá incluirse una llamada a dicha función dentro de cualquier expresión. Si la llamada se realiza como una sentencia (no se realiza en una expresión), se invocará a la función pero el valor devuelto se perderá:
 ```
 		b= fun1 (9); /* llamada a una función con un argumento entero */ 
 		c= b + fun2 (b, fun3() - 8); /* llamada con dos argumentos a una función, siendo fun3, una llamada a otra función sin argumentos */
 		fun2 (5, c); /* el valor devuelto por fun2 se pierde */
 ```
-
  	- **Sentencia de Retorno de una Función**
-   JavaScript-PL dispone de la sentencia return para finalizar la ejecución de una función y volver al punto desde el que fue llamada. Si no se desea que una función devuelva un valor, ésta terminará cuando se ejecute la instrucción return (sin expresión) o al llegar al final del cuerpo de la función. Si se desea que la función devuelva algún dato, deberá incluirse una expresión en la sentencia return. Si se indica, el tipo de la expresión retornada deberá coincidir con el tipo de la función. Si no se incluye una expresión, la función debe haber sido declarada sin tipo.
+JavaScript-PL dispone de la sentencia return para finalizar la ejecución de una función y volver al punto desde el que fue llamada. Si no se desea que una función devuelva un valor, ésta terminará cuando se ejecute la instrucción return (sin expresión) o al llegar al final del cuerpo de la función. Si se desea que la función devuelva algún dato, deberá incluirse una expresión en la sentencia return. Si se indica, el tipo de la expresión retornada deberá coincidir con el tipo de la función. Si no se incluye una expresión, la función debe haber sido declarada sin tipo.
 ```
 		function int SumaAlCuadrado (int a, int b)
 		{
@@ -168,11 +167,12 @@ De todo el grupo de sentencias del lenguaje JavaScript, se han seleccionado para
 		} /* finaliza la ejecución si antes no se ejecutó el return */
 ```
  	- **Sentencia Condicional simple**
-   Selecciona la ejecución de una sentencia, dependiendo del valor correspondiente de una condición de tipo lógico:
+Selecciona la ejecución de una sentencia, dependiendo del valor correspondiente de una condición de tipo lógico:
+```	
 	if (condición) sentencia
-
-		Si la condición lógica se evalúa como cierta se ejecuta la sentencia que puede ser cualquier sentencia simple del lenguaje, es decir, asignación, operación de entrada/salida, llamada a función o retorno (también break o sentencias de auto-incremento o auto-decremento para los grupos que tengan dichas opciones); en caso contrario, se finaliza su ejecución:
-		```
+```
+Si la condición lógica se evalúa como cierta se ejecuta la sentencia que puede ser cualquier sentencia simple del lenguaje, es decir, asignación, operación de entrada/salida, llamada a función o retorno (también break o sentencias de auto-incremento o auto-decremento para los grupos que tengan dichas opciones); en caso contrario, se finaliza su ejecución:
+```
 		if (a > b) c= b;
 		if (fin) print("adiós");
 ```
@@ -184,7 +184,7 @@ Esta sentencia permite repetir la ejecución de unas sentencias basándose en el
 		   sentencias
 		}
 ```
-		Se evalúa la condición lógica y, si resulta ser cierta, se ejecutan las sentencias (que será un bloque de sentencias encerradas entre llaves). Este proceso se repite hasta que la condición sea falsa:
+Se evalúa la condición lógica y, si resulta ser cierta, se ejecutan las sentencias (que será un bloque de sentencias encerradas entre llaves). Este proceso se repite hasta que la condición sea falsa:
 ```
 		while (n <= 10) 
 		{
@@ -200,18 +200,18 @@ Es necesario definir cada función antes de poder utilizarla. La definición de 
 	   sentencias
 	}
 ```
-	La lista de argumentos (que puede estar vacía y, en este caso, se ponen los paréntesis vacíos) consta del tipo y del nombre de cada parámetro formal). Si hay más de un argumento, éstos se separan por comas. Los argumentos se pasan siempre por valor.
+La lista de argumentos (que puede estar vacía y, en este caso, se ponen los paréntesis vacíos) consta del tipo y del nombre de cada parámetro formal). Si hay más de un argumento, éstos se separan por comas. Los argumentos se pasan siempre por valor.
 
-	Las funciones pueden recibir como parámetros cualquiera de los tipos básicos del lenguaje (entero, lógico o cadena).
+Las funciones pueden recibir como parámetros cualquiera de los tipos básicos del lenguaje (entero, lógico o cadena).
 
-	Las funciones pueden devolver un valor de uno de los tipos básicos del lenguaje (int, bool o string). El tipo de retorno de la función se determina según el tipo que aparezca en su declaración. Si se omite el tipo en la declaración, se entiende que la función no devolverá ningún valor. En caso de que las instrucciones return de una función tengan expresiones de un tipo distinto al declarado, será un error.
+Las funciones pueden devolver un valor de uno de los tipos básicos del lenguaje (int, bool o string). El tipo de retorno de la función se determina según el tipo que aparezca en su declaración. Si se omite el tipo en la declaración, se entiende que la función no devolverá ningún valor. En caso de que las instrucciones return de una función tengan expresiones de un tipo distinto al declarado, será un error.
 
-	JavaScript-PL admite recursividad. Todos los grupos de trabajo han de considerarla en su implementación. Cualquier función puede ser recursiva, es decir, puede llamarse a sí misma.
+JavaScript-PL admite recursividad. Todos los grupos de trabajo han de considerarla en su implementación. Cualquier función puede ser recursiva, es decir, puede llamarse a sí misma.
 
-	El lenguaje JavaScript-PL no permite la definición de funciones anidadas. Esto implica que dentro de una función no se puede definir otra función.
+El lenguaje JavaScript-PL no permite la definición de funciones anidadas. Esto implica que dentro de una función no se puede definir otra función.
 
-	Dentro de una función se tiene acceso a las variables locales, a sus argumentos y a las variables globales. Si en una función se declara una variable local o un argumento con el mismo nombre que una variable global, ésta última no es accesible desde dicha función.
-	```
+Dentro de una función se tiene acceso a las variables locales, a sus argumentos y a las variables globales. Si en una función se declara una variable local o un argumento con el mismo nombre que una variable global, ésta última no es accesible desde dicha función.
+```
 	var int x  // global
 	function int factorial (int x) 
 	   /* se define la función recursiva con un parámetro, 
@@ -226,6 +226,7 @@ Es necesario definir cada función antes de poder utilizarla. La definición de 
 	    return 1;
 	  }
 	}	// la función devuelve un entero
+	
 	function bool Suma (int aux, int fin)
 	  /* se define la función Suma que recibe 
 	     dos enteros por valor */
@@ -237,6 +238,7 @@ Es necesario definir cada función antes de poder utilizarla. La definición de 
 	    }
 	    return aux > 10000;
 	}	// la función devuelve un lógico
+	
 	function Imprime (int a)
 	{
 	    print (a);
