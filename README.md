@@ -50,12 +50,15 @@ El lenguaje JavaScript-PL no exige declaración de las variables que se utilicen
 	var Tipo var0;
 	var Tipo var1, var2, var3;	// se declaran las tres variables
 ```
+
 	Pueden realizarse declaraciones en cualquier lugar de un bloque de una función; en este caso, la variable será visible desde ese punto hasta el final de la función. También pueden realizarse declaraciones fuera de las funciones en cualquier parte del código (variables globales), siendo solo visibles desde ese punto hasta el final del fichero.
 
 	Opcionalmente, puede inicializarse una variable en la misma instrucción de la declaración, colocando detrás del nombre de la variable el operador de asignación (=) seguido de una expresión.
+	
 ```
 	var Tipo var4 = expresión4, var5 = expresión5;
 ```
+
 	Si una variable no se inicializa cuando se declara se realiza una inicialización por omisión basándose en su tipo: 0 si es entera, falso si es lógica y la cadena vacía ("") si es cadena.
 
 	El ámbito de una variable será global si no se ha declarado o si se declara fuera de cualquier función, y será local si se declara dentro del cuerpo de una función. No se admite la redeclaración del mismo identificador en un mismo ámbito.
@@ -74,7 +77,7 @@ El lenguaje dispone de distintos tipos de datos básicos.
 	El lenguaje no tiene conversiones automáticas entre tipos.
 
 	Ejemplos:
-	```
+```
 	var int i = 11;    // variable entera
 	var string st;     // variable cadena 
 	var bool b;        // variable lógica
@@ -84,22 +87,24 @@ El lenguaje dispone de distintos tipos de datos básicos.
 	i = b + i;         // Error: no se puede sumar un lógico con un entero
 	b = ! i;           // Error: el operador de negación solo puede aplicarse a lógicos
 ```
+
 - **Instrucciones de Entrada/Salida**
 La sentencia print (expresión) evalúa la expresión e imprime el resultado por pantalla. Por ejemplo:
 ```
 	a= 50; print(a * 2 + 16); /* imprime: 116 */
 ```
+
 	La expresión puede ser también una cadena o un lógico. Por ejemplo:
-	```
+```
 	a= 'Adiós';
 	print('Hola'); print(a); /* imprime HolaAdiós */
 ```
 	Se admite poner varias expresiones en print separadas por comas (implementación opcional):
-	```
+```
 	print ("El factorial de ", num, " es ", fact(num), ".\n");
 ```
 	La sentencia prompt (var) lee un número o una cadena del teclado y lo almacena en la variable var, que tiene que ser, respectivamente, de tipo entero o cadena. Por ejemplo:
-	```
+```
 	var int a;
 	var string c;
 	prompt (a); // lee un número
@@ -113,11 +118,12 @@ De todo el grupo de sentencias del lenguaje JavaScript, se han seleccionado para
 
 	 - **Sentencias de Asignación**
     Existe una sentencia de asignación en JavaScript-PL, que se construye mediante el símbolo de asignación = . Su sintaxis general es la siguiente: identificador, igual y expresión. Esta sentencia asigna al identificador el resultado de evaluar la expresión:
-    ```
+```
 	i= 8 + 6;
 ```
+
 		Como ya se ha indicado, no hay conversiones entre tipos, por lo que tanto el identificador como la expresión han de ser del mismo tipo.
-	```
+```
 		var int i = 123;	// i es una variable entera
 		var string cad;
 		print (i);   // imprime el valor entero 123
@@ -125,11 +131,12 @@ De todo el grupo de sentencias del lenguaje JavaScript, se han seleccionado para
 		print (cad); // imprime el valor cadena "hola"
 		i = i > 88;  // Error: no se puede asignar un lógico a un entero
 ```
-	 - **Sentencia de Llamada a una Función**
-		Esta sentencia permite invocar la ejecución de una función que debe estar previamente definida [implementación obligatoria].
+
+	- **Sentencia de Llamada a una Función**
+		Esta sentencia permite invocar la ejecución de una función que debe estar previamente definida .
 
 		La llamada a una función se realiza mediante el nombre de la función seguido de los argumentos actuales (separados por comas) entre paréntesis (si no tiene argumentos, hay que poner los paréntesis vacíos). Los argumentos pueden ser cualquier expresión:
-	```
+```
 		p1 (5);        /* llamada a una función con un argumento entero */ 
 		p2 ();         /* llamada sin argumentos a una función */ 
 		p3 (b, i - 8); /* llamada con dos argumentos a una función */
@@ -142,9 +149,10 @@ De todo el grupo de sentencias del lenguaje JavaScript, se han seleccionado para
 		c= b + fun2 (b, fun3() - 8); /* llamada con dos argumentos a una función, siendo fun3, una llamada a otra función sin argumentos */
 		fun2 (5, c); /* el valor devuelto por fun2 se pierde */
 ```
+
  	- **Sentencia de Retorno de una Función**
    JavaScript-PL dispone de la sentencia return para finalizar la ejecución de una función y volver al punto desde el que fue llamada. Si no se desea que una función devuelva un valor, ésta terminará cuando se ejecute la instrucción return (sin expresión) o al llegar al final del cuerpo de la función. Si se desea que la función devuelva algún dato, deberá incluirse una expresión en la sentencia return. Si se indica, el tipo de la expresión retornada deberá coincidir con el tipo de la función. Si no se incluye una expresión, la función debe haber sido declarada sin tipo.
-	```
+```
 		function int SumaAlCuadrado (int a, int b)
 		{
 		  j= a + b;
