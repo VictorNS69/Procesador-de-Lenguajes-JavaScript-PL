@@ -38,23 +38,24 @@ Negación (!).
 
 - **Identificadores**
 Los nombres de identificadores están formados por cualquier cantidad de letras,dígitos y subrayados (\_), siendo el primero siempre una letra. Ejemplos: a, a3, A3, Sueldo\_de\_Trabajador, z\_9\_9\_\_...
-Como ya se ha dicho, el lenguaje es dependiente de minúsculas o mayúsculas, por lo que los nombres a3 y A3 referencian a identificadores distintos.
+
+	Como ya se ha dicho, el lenguaje es dependiente de minúsculas o mayúsculas, por lo que los nombres a3 y A3 referencian a identificadores distintos.
 
 - **Declaraciones**
 El lenguaje JavaScript-PL no exige declaración de las variables que se utilicen. En el caso de que se use un nombre de variable que no ha sido declarado previamente, se considera que dicha variable es global y entera.
 
-Para realizar una declaración de una variable, se coloca la palabra var seguida del tipo y del nombre de la variable. Se puede poner una lista de variables separadas por comas:
+	Para realizar una declaración de una variable, se coloca la palabra var seguida del tipo y del nombre de la variable. Se puede poner una lista de variables separadas por comas:
 	var Tipo var0;
 	var Tipo var1, var2, var3;	// se declaran las tres variables
 
-Pueden realizarse declaraciones en cualquier lugar de un bloque de una función; en este caso, la variable será visible desde ese punto hasta el final de la función. También pueden realizarse declaraciones fuera de las funciones en cualquier parte del código (variables globales), siendo solo visibles desde ese punto hasta el final del fichero.
+	Pueden realizarse declaraciones en cualquier lugar de un bloque de una función; en este caso, la variable será visible desde ese punto hasta el final de la función. También pueden realizarse declaraciones fuera de las funciones en cualquier parte del código (variables globales), siendo solo visibles desde ese punto hasta el final del fichero.
 
-Opcionalmente, puede inicializarse una variable en la misma instrucción de la declaración, colocando detrás del nombre de la variable el operador de asignación (=) seguido de una expresión.
+	Opcionalmente, puede inicializarse una variable en la misma instrucción de la declaración, colocando detrás del nombre de la variable el operador de asignación (=) seguido de una expresión.
 	var Tipo var4 = expresión4, var5 = expresión5;
 
-Si una variable no se inicializa cuando se declara se realiza una inicialización por omisión basándose en su tipo: 0 si es entera, falso si es lógica y la cadena vacía ("") si es cadena.
+	Si una variable no se inicializa cuando se declara se realiza una inicialización por omisión basándose en su tipo: 0 si es entera, falso si es lógica y la cadena vacía ("") si es cadena.
 
-El ámbito de una variable será global si no se ha declarado o si se declara fuera de cualquier función, y será local si se declara dentro del cuerpo de una función. No se admite la redeclaración del mismo identificador en un mismo ámbito.
+	El ámbito de una variable será global si no se ha declarado o si se declara fuera de cualquier función, y será local si se declara dentro del cuerpo de una función. No se admite la redeclaración del mismo identificador en un mismo ámbito.
 
 - **Tipos de Datos**
 El lenguaje dispone de distintos tipos de datos básicos.
