@@ -1,6 +1,4 @@
-int a = 3;
-
-while (a = 3){
-	int b = 9;
-	string c;
-}
+var int a;
+a = 9;
+var string b;
+b = "hola comentario";

@@ -1,22 +1,16 @@
+<var,>
 <int,>
 <ID,a>
-<Igual,>
-<Entero,3>
-<CaracterEspecial,1 >
-<while,>
-<CaracterEspecial,5 >
+<PuntoComa, >
 <ID,a>
-<Igual,>
-<Entero,3>
-<CaracterEspecial,6 >
-<CaracterEspecial,3 >
-<int,>
-<ID,b>
-<Igual,>
+<igual,>
 <Entero,9>
-<CaracterEspecial,1 >
+<PuntoComa, >
+<var,>
 <string,>
-<ID,c>
-<CaracterEspecial,1 >
-<CaracterEspecial,4 >
+<ID,b>
+<PuntoComa, >
+<ID,b>
+<igual,>
+<Cadena,"hola comentario">
 <EOF, >

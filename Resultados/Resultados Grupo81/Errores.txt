@@ -1,2 +1,2 @@
-(linea 1) ->Error en Analizador sint�ctico: No se permite el token <int,> aqu�
-(linea 1) ->Error en Analizador sint�ctico: No se permite el token <int,> aqu�
+(linea 1) ->Error en Analizador sintactico: Se esperaba ';'. Se ha recibido el token <Cadena,"hola comentario> aqui
+(linea 1) ->Error en Analizador sintactico: Se esperaba ';'. Se ha recibido el token <Cadena,"hola comentario"> aqui

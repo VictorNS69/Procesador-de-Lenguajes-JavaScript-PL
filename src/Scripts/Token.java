@@ -89,27 +89,27 @@ public class Token {
 			}
 		case 3:
 			if (character == ';') {
-				escribirToken("CaracterEspecial", "1 ",AnManager.contadorLineas);
+				escribirToken("PuntoComa", " ",AnManager.contadorLineas);
 				return new Accion (0,0);
 			}
 			if (character == ',') {
-				escribirToken("CaracterEspecial", "2 ",AnManager.contadorLineas);
+				escribirToken("Coma", " ",AnManager.contadorLineas);
 				return new Accion (0,0);
 			}
 			if (character == '{') {
-				escribirToken("CaracterEspecial", "3 ",AnManager.contadorLineas);
+				escribirToken("al", " ",AnManager.contadorLineas);
 				return new Accion (0,0);
 			}
 			if (character == '}') {
-				escribirToken("CaracterEspecial", "4 ",AnManager.contadorLineas);
+				escribirToken("cl", " ",AnManager.contadorLineas);
 				return new Accion (0,0);
 			}
 			if (character == '(') {
-				escribirToken("CaracterEspecial", "5 ",AnManager.contadorLineas);
+				escribirToken("ap", " ",AnManager.contadorLineas);
 				return new Accion (0,0);
 			}
 			if (character == ')') {
-				escribirToken("CaracterEspecial", "6 ",AnManager.contadorLineas);
+				escribirToken("cp", " ",AnManager.contadorLineas);
 				return new Accion (0,0);
 			}
 		case 4:
@@ -126,7 +126,7 @@ public class Token {
 			//escribirToken("DobleBarra", ">", AnManager.contadorLineas);
 			return new Accion(0,5);
 		case 6:
-			escribirToken("OpArit", "2 ", AnManager.contadorLineas);
+			escribirToken("div", " ", AnManager.contadorLineas);
 			return new Accion(1,0);
 		case 7:
 			if (character == '+') {
@@ -136,20 +136,20 @@ public class Token {
 				return new Accion (1,8);
 			}
 		case 8:
-			escribirToken("OpArit", "1 ", AnManager.contadorLineas);
+			escribirToken("suma", " ", AnManager.contadorLineas);
 			return new Accion (1,0);
 		case 9:
-			escribirToken("OpArit", "3 ", AnManager.contadorLineas);
+			escribirToken("Preincremento", " ", AnManager.contadorLineas);
 			return new Accion (0,0);
 		case 10:
 			if (character == '"') {
-				return new Accion (1,15);
+				return new Accion (2,15);
 			}
 			else {
 				return new Accion(2,10); 
 			}
 		case 11:
-			escribirToken("Igual", "", AnManager.contadorLineas);
+			escribirToken("igual", "", AnManager.contadorLineas);
 			return new Accion(0,0);
 		case 12:
 			if (character == '=') {
@@ -159,10 +159,10 @@ public class Token {
 				return new Accion(1,14);
 			}
 		case 13:
-			escribirToken("Distinto", "", AnManager.contadorLineas);
+			escribirToken("distinto", "", AnManager.contadorLineas);
 			return new Accion (0,0);
 		case 14:
-			escribirToken("Negacion", "", AnManager.contadorLineas);
+			escribirToken("negacion", "", AnManager.contadorLineas);
 			return new Accion (1,0);
 		case 15:
 			return new Accion (5,0);//Generar token cadena
