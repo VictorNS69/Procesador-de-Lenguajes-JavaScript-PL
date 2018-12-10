@@ -100,7 +100,7 @@ public class AnManager {
 					if (n<=32767){
 						Token.escribirToken("Entero", concatenacion,contadorLineas); //Numero
 					}else{
-						Errores.escribirError("Analizador l�xico","El n�mero "+n+" sobrepasa el valor permitido" , AnManager.contadorLineas );
+						Errores.escribirError("Analizador lexico","El numero "+n+" sobrepasa el valor permitido" , AnManager.contadorLineas );
 					}
 					concatenacion = "";
 					//Leemos caracter actual:
@@ -109,7 +109,7 @@ public class AnManager {
 					continue;
 				}
 				if (accion.accion == 5){
-					Token.escribirToken("Cadena", concatenacion,contadorLineas); //Cadena
+					Token.escribirToken("Cadena", concatenacion+"\"",contadorLineas); //Cadena
 					concatenacion=""; //Reset
 					break;
 				}
@@ -129,14 +129,14 @@ public class AnManager {
 	
 	//Genera el archivo Gram�tica.txt en la carpeta destino
 	public static void genArchivoGramatica(){
-		String path = AnManager.getPath() + File.separator +"Resultados Grupo144" + File.separator+ "Gram�tica.txt";
+		String path = AnManager.getPath() + File.separator +"Resultados Grupo81" + File.separator+ "Gramatica.txt";
 		File f = new File(path);
 		f.getParentFile().mkdirs(); 
 		try {
 			f.delete(); //Eliminamos si existe algo antes
 			f.createNewFile();
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Fallo al crear archivo Gram�tica");
+			JOptionPane.showMessageDialog(null, "Fallo al crear archivo Gramatica");
 		}
 	}
 
@@ -145,13 +145,13 @@ public class AnManager {
 	public static void rellenarGramatica(){
 		PrintWriter pw = null;
 		try {
-			File file = new File(AnManager.getPath() + File.separator +"Resultados Grupo144" + File.separator+ "Gram�tica.txt");
+			File file = new File(AnManager.getPath() + File.separator +"Resultados Grupo81" + File.separator+ "Gramatica.txt");
 			FileWriter fw = new FileWriter(file, true);
 			pw = new PrintWriter(fw);
 			pw.println("");
-			pw.println("Terminales = { var id ; if =  {  } (  ) && > +  -- , function int chars bool true false return write prompt entero cadena for eof }");
+			pw.println("Terminales = { var id ; if =  {  } (  ) ! != +  ++ , function int string bool true false return print prompt entero cadena while eof }");
 			pw.println("");
-			pw.println("NoTerminales = { P B I D T S Sa X C F H A K L Q E Ea R Ra U Ua V Va }");
+			pw.println("NoTerminales = { P B T S Sa X C F H A K L Q R Ra U Ua V Va }");
 			pw.println("");
 			pw.println("Axioma = P");
 			pw.println("");
@@ -160,27 +160,23 @@ public class AnManager {
 			pw.println("P -> F P");
 			pw.println("P -> eof");
 			pw.println("B -> var T id ;");
-			pw.println("B -> if ( E ) S");
+			pw.println("B -> if ( R ) S");
+			pw.println("B -> while ( R ) { C }");
 			pw.println("B -> S");
-			pw.println("B -> for ( I ; E ; D ) { C }");
-			pw.println("I -> id = E");
-			pw.println("I -> var T id = E");
-			pw.println("I -> lambda");
-			pw.println("D -> -- id");
-			pw.println("D -> lambda");
 			pw.println("T -> int");
-			pw.println("T -> chars");
+			pw.println("T -> string");
 			pw.println("T -> bool");
 			pw.println("S -> id Sa");
 			pw.println("S -> return X ;");
-			pw.println("S -> write ( E ) ; ");
+			pw.println("S -> print ( R ) ; ");
 			pw.println("S -> prompt ( id ) ;");
-			pw.println("Sa -> = E ; ");
+			pw.println("Sa -> = R ; ");
 			pw.println("Sa -> ( L ) ;");
-			pw.println("X -> E");
+			pw.println("X -> R");
 			pw.println("X -> lambda");
 			pw.println("C -> B C");
 			pw.println("C -> lambda");
+			pw.println("C -> eol"); // puede dar error
 			pw.println("F -> function H id ( A ) { C }");
 			pw.println("H -> T");
 			pw.println("H -> lambda");
@@ -188,15 +184,12 @@ public class AnManager {
 			pw.println("A -> lambda");
 			pw.println("K -> , T id K");
 			pw.println("K -> lambda");
-			pw.println("L -> E Q");
+			pw.println("L -> R Q");
 			pw.println("L -> lambda");
-			pw.println("Q -> , E Q");
+			pw.println("Q -> , R Q");
 			pw.println("Q -> lambda");
-			pw.println("E -> R Ea");
-			pw.println("Ea -> && E");
-			pw.println("Ea -> lambda");
 			pw.println("R -> U Ra");
-			pw.println("Ra -> > R");
+			pw.println("Ra -> = R");
 			pw.println("Ra -> lambda");
 			pw.println("U -> V Ua");
 			pw.println("Ua -> + U");
@@ -204,12 +197,14 @@ public class AnManager {
 			pw.println("V -> id Va");
 			pw.println("V -> entero");
 			pw.println("V -> cadena");
-			pw.println("V -> -- id");
+			pw.println("V -> ++ id");
 			pw.println("V -> true");
 			pw.println("V -> false");
-			pw.println("V -> ( E )");
-			pw.println("Va -> lambda");
+			pw.println("V -> ( R )");
+			pw.println("V -> !");
+			pw.println("V -> //"); //puede dar error
 			pw.println("Va -> ( L )");
+			pw.println("Va -> lambda");
 			pw.println("}");
 			pw.println("");
 		} catch (IOException e) {

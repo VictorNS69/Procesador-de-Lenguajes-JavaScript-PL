@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class Errores {
 
 	public static void genArchivoErrores(){
-		String path = AnManager.getPath() + File.separator +"Resultados Grupo144" + File.separator+ "Errores.txt";
+		String path = AnManager.getPath() + File.separator +"Resultados Grupo81" + File.separator+ "Errores.txt";
 		File f = new File(path);
 		f.getParentFile().mkdirs(); 
 		try {
@@ -45,7 +45,7 @@ public class Errores {
 			File file = new File(AnManager.getPath() + File.separator +"Resultados Grupo81" + File.separator+ "Errores.txt");
 			FileWriter fw = new FileWriter(file, true);
 			pw = new PrintWriter(fw);
-			pw.println("*No se han detectado errores en el c�digo*");
+			pw.println("*No se han detectado errores en el codigo*");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

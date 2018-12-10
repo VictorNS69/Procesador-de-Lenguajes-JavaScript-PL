@@ -284,7 +284,7 @@ public class AnalizadorSinSem {
 
 				if(sgtetoken.tipoToken.equals("cl")){
 					sgtetoken = AnManager.pedirTokenAlex();
-				}else{
+				}else if (sgtetoken.tipoToken.equals("EOL")){
 					Errores.escribirError("Analizador sintactico", "Falta un '}' antes de recibir el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aqui", AnManager.lineasST);
 					//Tratamiento de error:
 					if (AnManager.comprobarSiguienteToken().tipoToken.equals("cl")){ //Si el siguiente token es el que esperamos, continuamos normalmente
@@ -298,7 +298,9 @@ public class AnalizadorSinSem {
 				if (sgtetoken.tipoToken.equals("EOL")){ //Permitimos aqui un salto de l�nea
 					sgtetoken = AnManager.pedirTokenAlex();
 				}			
-				default:
+			case "EOF":
+				return;
+			default:
 				Errores.escribirError("Analizador sintactico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aqui", AnManager.lineasST);
 				break;
 			}	
@@ -322,7 +324,7 @@ public class AnalizadorSinSem {
 				escribirParse("11");
 
 				//Analizador semantico
-				T.tipo = "String";
+				T.tipo = "string";
 
 				sgtetoken = AnManager.pedirTokenAlex();
 				return;
@@ -673,7 +675,7 @@ public class AnalizadorSinSem {
 				escribirParse("18");
 				R();
 				if (RhayError){	
-					Errores.escribirError("Analizador semantico", "No es correcta la expresion", AnManager.lineasST);
+					Errores.escribirError("Analizador semantico", "No es correcta la expresion", AnManager.lineasST); 
 					RhayError = false;
 				}
 				//Analizador semantico
@@ -803,7 +805,7 @@ public class AnalizadorSinSem {
 				C();
 				return;
 				//follow C
-			case "}":
+			case "cl":
 				escribirParse("22");
 				return;
 			default:
@@ -879,7 +881,7 @@ public class AnalizadorSinSem {
 				}else{
 					Errores.escribirError("Analizador sintactico", "Se esperaba ')'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aqui", AnManager.lineasST);
 					//Tratamiento de error:
-					if (AnManager.comprobarSiguienteToken().tipoToken.equals("EOL") || AnManager.comprobarSiguienteToken().tipoToken.equals("{")){ //Si el siguiente token es el que esperamos, continuamos normalmente
+					if (AnManager.comprobarSiguienteToken().tipoToken.equals("EOL") || AnManager.comprobarSiguienteToken().tipoToken.equals("al")){ //Si el siguiente token es el que esperamos, continuamos normalmente
 						sgtetoken = AnManager.pedirTokenAlex();
 						sgtetoken = AnManager.pedirTokenAlex();
 					}else{ //Si no es lo que esperamos, procedemos al PanicMode
@@ -890,7 +892,7 @@ public class AnalizadorSinSem {
 				if (sgtetoken.tipoToken.equals("EOL")){ //Permitimos aqui un salto de l�nea
 					sgtetoken = AnManager.pedirTokenAlex();
 				}
-				if (sgtetoken.tipoToken.equals("{")){
+				if (sgtetoken.tipoToken.equals("al")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
 					Errores.escribirError("Analizador sintactico", "Se esperaba '{'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aqui", AnManager.lineasST);
@@ -923,7 +925,7 @@ public class AnalizadorSinSem {
 				functionActual = null;
 
 
-				if (sgtetoken.tipoToken.equals("}")){
+				if (sgtetoken.tipoToken.equals("cl")){
 					sgtetoken = AnManager.pedirTokenAlex();
 				}else{
 					Errores.escribirError("Analizador sintactico", "Se esperaba '}'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aqui", AnManager.lineasST);
@@ -1896,7 +1898,7 @@ public class AnalizadorSinSem {
 				argumentos = 0;
 				while(x < tablasSimbolos.get(j+1).size()){
 					if (argumentos != buscaTS(TSG, tituloFunciones.get(j)).argumentos){
-						pw.println("  * LEXEMA: '"+tablasSimbolos.get(j+1).get(x).lexema+"' (parametro de funcio�n)");
+						pw.println("  * LEXEMA: '"+tablasSimbolos.get(j+1).get(x).lexema+"' (parametro de funcion)");
 						argumentos++;
 					}else{
 						pw.println("  * LEXEMA: '"+tablasSimbolos.get(j+1).get(x).lexema+"'");

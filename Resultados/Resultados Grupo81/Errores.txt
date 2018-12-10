@@ -1,2 +1,0 @@
-(linea 1) ->Error en Analizador sintactico: Se esperaba ';'. Se ha recibido el token <Cadena,"hola comentario> aqui
-(linea 1) ->Error en Analizador sintactico: Se esperaba ';'. Se ha recibido el token <Cadena,"hola comentario"> aqui

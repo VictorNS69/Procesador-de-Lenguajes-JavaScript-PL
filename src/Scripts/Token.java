@@ -71,6 +71,10 @@ public class Token {
 			if(character == '\r'){
 				return new Accion(0,0); //Leemos y vamos al estado 0
 			}
+			if (character == '\0') {
+				escribirToken("EOF", " ",AnManager.contadorLineas);
+				//return new Accion(0,0); 
+			}
 			//El caracter no concuerda: Error
 			Errores.escribirError("Analizador lexico","No se reconoce el caracter ( "+character+" )" , AnManager.contadorLineas );
 			return new Accion(0,0); //Leemos car�cter err�neo y continuamos
@@ -143,7 +147,8 @@ public class Token {
 			return new Accion (0,0);
 		case 10:
 			if (character == '"') {
-				return new Accion (2,15);
+				return new Accion (5,0);
+				//return new Accion (2,15);
 			}
 			else {
 				return new Accion(2,10); 
