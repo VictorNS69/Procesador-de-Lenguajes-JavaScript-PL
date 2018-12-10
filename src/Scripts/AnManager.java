@@ -164,8 +164,8 @@ public class AnManager {
 			pw.println("B -> while ( R ) { C }");
 			pw.println("B -> S");
 			pw.println("T -> int");
-			pw.println("T -> string");
 			pw.println("T -> bool");
+			pw.println("T -> string");
 			pw.println("S -> id Sa");
 			pw.println("S -> return X ;");
 			pw.println("S -> print ( R ) ; ");
@@ -176,7 +176,6 @@ public class AnManager {
 			pw.println("X -> lambda");
 			pw.println("C -> B C");
 			pw.println("C -> lambda");
-			pw.println("C -> eol"); // puede dar error
 			pw.println("F -> function H id ( A ) { C }");
 			pw.println("H -> T");
 			pw.println("H -> lambda");
@@ -202,7 +201,6 @@ public class AnManager {
 			pw.println("V -> false");
 			pw.println("V -> ( R )");
 			pw.println("V -> !");
-			pw.println("V -> //"); //puede dar error
 			pw.println("Va -> ( L )");
 			pw.println("Va -> lambda");
 			pw.println("}");

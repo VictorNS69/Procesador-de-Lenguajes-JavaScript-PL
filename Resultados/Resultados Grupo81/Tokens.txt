@@ -1,0 +1,11 @@
+<while,>
+<ap, >
+<true,>
+<cp, >
+<al, >
+<ID,a>
+<igual,>
+<Entero,3>
+<PuntoComa, >
+<cl, >
+<EOF, >

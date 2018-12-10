@@ -110,7 +110,7 @@ public class AnalizadorSinSem {
 				P();
 				return;
 			case "EOF": //Ignoramos saltos de linea
-				escribirParse("4");
+				escribirParse("3");
 				return;
 			default:
 				Errores.escribirError("Analizador sintactico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aqui", AnManager.lineasST);
@@ -129,7 +129,7 @@ public class AnalizadorSinSem {
 		}else{
 			switch(sgtetoken.tipoToken){
 			case "var":
-				escribirParse("5");
+				escribirParse("4");
 				sgtetoken = AnManager.pedirTokenAlex();
 				T();
 				if(sgtetoken.tipoToken.equals("ID")){
@@ -182,7 +182,7 @@ public class AnalizadorSinSem {
 
 				return;
 			case "if":
-				escribirParse("6");
+				escribirParse("5");
 				sgtetoken = AnManager.pedirTokenAlex();
 				if(sgtetoken.tipoToken.equals("ap")){
 					sgtetoken = AnManager.pedirTokenAlex();
@@ -215,23 +215,23 @@ public class AnalizadorSinSem {
 				return;
 				//FIRST 'S'
 			case "ID":
-				escribirParse("8");
+				escribirParse("7");
 				S();
 				return;
 			case "return":
-				escribirParse("8");
+				escribirParse("7");
 				S();
 				return;
 			case "print":
-				escribirParse("8");
+				escribirParse("7");
 				S();
 				return;
 			case "prompt":
-				escribirParse("8");
+				escribirParse("7");
 				S();
 				return;
 			case "while":
-				escribirParse("7");
+				escribirParse("6");
 				sgtetoken = AnManager.pedirTokenAlex();
 				if(sgtetoken.tipoToken.equals("ap")){
 					sgtetoken = AnManager.pedirTokenAlex();	
@@ -313,7 +313,7 @@ public class AnalizadorSinSem {
 		}else{
 			switch(sgtetoken.tipoToken){
 			case "int":
-				escribirParse("9");
+				escribirParse("8");
 
 				//Analizador semantico
 				T.tipo = "Entero";
@@ -321,7 +321,7 @@ public class AnalizadorSinSem {
 				sgtetoken = AnManager.pedirTokenAlex();
 				return;
 			case "string":
-				escribirParse("11");
+				escribirParse("10");
 
 				//Analizador semantico
 				T.tipo = "string";
@@ -329,7 +329,7 @@ public class AnalizadorSinSem {
 				sgtetoken = AnManager.pedirTokenAlex();
 				return;
 			case "bool":
-				escribirParse("10");
+				escribirParse("9");
 
 				//Analizador semantico
 				T.tipo = "Bool";
@@ -349,7 +349,7 @@ public class AnalizadorSinSem {
 		}else{
 			switch(sgtetoken.tipoToken){
 			case "ID":
-				escribirParse("12");
+				escribirParse("11");
 
 				//Analizador semantico:
 				itemTS item = null;
@@ -425,7 +425,7 @@ public class AnalizadorSinSem {
 				return;
 
 			case "return":
-				escribirParse("13");
+				escribirParse("12");
 				sgtetoken = AnManager.pedirTokenAlex();
 				X();
 				//Analizador semantico
@@ -453,7 +453,7 @@ public class AnalizadorSinSem {
 				return;
 
 			case "prompt":
-				escribirParse("15");
+				escribirParse("14");
 				sgtetoken = AnManager.pedirTokenAlex();
 				if (sgtetoken.tipoToken.equals("ap")){
 					sgtetoken = AnManager.pedirTokenAlex();
@@ -537,7 +537,7 @@ public class AnalizadorSinSem {
 				}
 				return;
 			case "print":
-				escribirParse("14");
+				escribirParse("13");
 				sgtetoken = AnManager.pedirTokenAlex();
 				if (sgtetoken.tipoToken.equals("ap")){
 					sgtetoken = AnManager.pedirTokenAlex();
@@ -583,7 +583,7 @@ public class AnalizadorSinSem {
 		}else{
 			switch(sgtetoken.tipoToken){
 			case "igual":
-				escribirParse("16");
+				escribirParse("15");
 				sgtetoken = AnManager.pedirTokenAlex();
 				R();
 				if (RhayError){	
@@ -602,7 +602,7 @@ public class AnalizadorSinSem {
 				}
 				return;
 			case "ap":
-				escribirParse("17");
+				escribirParse("16");
 				sgtetoken = AnManager.pedirTokenAlex();
 				L();
 				Sa.tipo = null;
@@ -642,7 +642,7 @@ public class AnalizadorSinSem {
 			switch(sgtetoken.tipoToken){
 			//First E
 			case "ID":
-				escribirParse("18");
+				escribirParse("17");
 				R();
 				if (RhayError){	
 					Errores.escribirError("Analizador semantico", "No es correcta la expresion", AnManager.lineasST);
@@ -652,7 +652,7 @@ public class AnalizadorSinSem {
 				X.tipo = R.tipo;
 				return;
 			case "Entero":
-				escribirParse("18");
+				escribirParse("17");
 				R();
 				if (RhayError){	
 					Errores.escribirError("Analizador semantico", "No es correcta la expresion", AnManager.lineasST);
@@ -662,7 +662,7 @@ public class AnalizadorSinSem {
 				X.tipo = R.tipo;
 				return;
 			case "cadena":
-				escribirParse("18");
+				escribirParse("17");
 				R();
 				if (RhayError){	
 					Errores.escribirError("Analizador semantico", "No es correcta la expresion", AnManager.lineasST);
@@ -672,7 +672,7 @@ public class AnalizadorSinSem {
 				X.tipo = R.tipo;
 				return;
 			case "Preincremento":
-				escribirParse("18");
+				escribirParse("17");
 				R();
 				if (RhayError){	
 					Errores.escribirError("Analizador semantico", "No es correcta la expresion", AnManager.lineasST); 
@@ -682,7 +682,7 @@ public class AnalizadorSinSem {
 				X.tipo = R.tipo;
 				return;
 			case "true":
-				escribirParse("18");
+				escribirParse("17");
 				R();
 				if (RhayError){	
 					Errores.escribirError("Analizador semantico", "No es correcta la expresion", AnManager.lineasST);
@@ -692,7 +692,7 @@ public class AnalizadorSinSem {
 				X.tipo = R.tipo;
 				return;
 			case "false":
-				escribirParse("18");
+				escribirParse("17");
 				R();
 				if (RhayError){	
 					Errores.escribirError("Analizador semantico", "No es correcta la expresion", AnManager.lineasST);
@@ -702,7 +702,7 @@ public class AnalizadorSinSem {
 				X.tipo = R.tipo;
 				return;
 			case "ap":
-				escribirParse("18");
+				escribirParse("17");
 				R();
 				if (RhayError){	
 					Errores.escribirError("Analizador semantico", "No es correcta la expresion", AnManager.lineasST);
@@ -712,7 +712,7 @@ public class AnalizadorSinSem {
 				X.tipo = R.tipo;
 				return;
 			case "PuntoComa": //Follow
-				escribirParse("19");
+				escribirParse("18");
 				//Analizador semantico
 				X.tipo = "Void";
 				return; 
@@ -731,7 +731,7 @@ public class AnalizadorSinSem {
 			switch(sgtetoken.tipoToken){
 			//First B
 			case "var":
-				escribirParse("20");
+				escribirParse("19");
 				//Analizador semantico
 				//Vamos a comprobar si ya se ha ejecutado return en la funcion (en el caso de que estemos)
 				if (functionActual != null && functionActual.yaDevuelto){
@@ -741,7 +741,7 @@ public class AnalizadorSinSem {
 				C();
 				return;
 			case "if":
-				escribirParse("20");
+				escribirParse("19");
 				//Analizador semantico
 				//Vamos a comprobar si ya se ha ejecutado return en la funcion (en el caso de que estemos)
 				if (functionActual != null && functionActual.yaDevuelto){
@@ -751,7 +751,7 @@ public class AnalizadorSinSem {
 				C();
 				return;
 			case "ID":
-				escribirParse("20");
+				escribirParse("19");
 				//Analizador semantico
 				//Vamos a comprobar si ya se ha ejecutado return en la funcion (en el caso de que estemos)
 				if (functionActual != null && functionActual.yaDevuelto){
@@ -761,7 +761,7 @@ public class AnalizadorSinSem {
 				C();
 				return;
 			case "return":
-				escribirParse("20");
+				escribirParse("19");
 				//Analizador semantico
 				//Vamos a comprobar si ya se ha ejecutado return en la funcion (en el caso de que estemos)
 				if (functionActual != null && functionActual.yaDevuelto){
@@ -771,7 +771,7 @@ public class AnalizadorSinSem {
 				C();
 				return;
 			case "print":
-				escribirParse("20");
+				escribirParse("19");
 				//Analizador semantico
 				//Vamos a comprobar si ya se ha ejecutado return en la funcion (en el caso de que estemos)
 				if (functionActual != null && functionActual.yaDevuelto){
@@ -781,7 +781,7 @@ public class AnalizadorSinSem {
 				C();
 				return;
 			case "prompt":
-				escribirParse("20");
+				escribirParse("19");
 				//Analizador semantico
 				//Vamos a comprobar si ya se ha ejecutado return en la funcion (en el caso de que estemos)
 				if (functionActual != null && functionActual.yaDevuelto){
@@ -791,7 +791,7 @@ public class AnalizadorSinSem {
 				C();
 				return;
 			case "while":
-				escribirParse("20");
+				escribirParse("19");
 				//Analizador semantico
 				//Vamos a comprobar si ya se ha ejecutado return en la funcion (en el caso de que estemos)
 				if (functionActual != null && functionActual.yaDevuelto){
@@ -806,7 +806,7 @@ public class AnalizadorSinSem {
 				return;
 				//follow C
 			case "cl":
-				escribirParse("22");
+				escribirParse("20");
 				return;
 			default:
 				Errores.escribirError("Analizador sintactico", "No se permite el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aqui", AnManager.lineasST);
@@ -827,7 +827,7 @@ public class AnalizadorSinSem {
 			if (sgtetoken.tipoToken.equals("function")){
 
 				sgtetoken = AnManager.pedirTokenAlex();
-				escribirParse("23");
+				escribirParse("21");
 				H();
 				if (sgtetoken.tipoToken.equals("ID")){
 					//Analizador semantico
@@ -946,7 +946,7 @@ public class AnalizadorSinSem {
 			//First T
 			switch(sgtetoken.tipoToken){
 			case "int":
-				escribirParse("24");
+				escribirParse("22");
 				T();
 
 				//Analizador semantico
@@ -954,7 +954,7 @@ public class AnalizadorSinSem {
 
 				return;
 			case "string":
-				escribirParse("24");
+				escribirParse("22");
 				T();
 
 				//Analizador semantico
@@ -962,7 +962,7 @@ public class AnalizadorSinSem {
 
 				return;
 			case "bool":
-				escribirParse("24");
+				escribirParse("22");
 				T();
 
 				//Analizador semantico
@@ -971,7 +971,7 @@ public class AnalizadorSinSem {
 				return;
 				//Follow H
 			case "ID":
-				escribirParse("25");
+				escribirParse("23");
 
 				//Analizador semantico
 				H.tipo = "Void";
@@ -991,7 +991,7 @@ public class AnalizadorSinSem {
 			switch(sgtetoken.tipoToken){
 			//First T
 			case "int":
-				escribirParse("26");
+				escribirParse("24");
 				T();
 
 				//Analizador semantico
@@ -1011,7 +1011,7 @@ public class AnalizadorSinSem {
 				K();
 				return;
 			case "string":
-				escribirParse("26");
+				escribirParse("24");
 				T();
 
 				//Analizador semantico
@@ -1032,7 +1032,7 @@ public class AnalizadorSinSem {
 				K();
 				return;
 			case "bool":
-				escribirParse("26");
+				escribirParse("24");
 				T();
 
 				//Analizador semantico
@@ -1053,7 +1053,7 @@ public class AnalizadorSinSem {
 				return;
 				//Follow A
 			case "cp":
-				escribirParse("27");
+				escribirParse("25");
 				return;
 			default:
 				Errores.escribirError("Analizador sintactico", "Falta el 'Tipo' del par�metro que recibe la Funcion", AnManager.lineasST);
@@ -1072,7 +1072,7 @@ public class AnalizadorSinSem {
 		}else{
 			switch(sgtetoken.tipoToken){
 			case "Coma":
-				escribirParse("28");
+				escribirParse("26");
 				sgtetoken = AnManager.pedirTokenAlex();
 				T();
 
@@ -1094,7 +1094,7 @@ public class AnalizadorSinSem {
 				return;
 				//Follow K
 			case "cp":
-				escribirParse("29");
+				escribirParse("27");
 				return;
 			default:
 				break;
@@ -1109,7 +1109,7 @@ public class AnalizadorSinSem {
 			switch(sgtetoken.tipoToken){
 			//First E
 			case "ID":
-				escribirParse("30");
+				escribirParse("28");
 				R();
 				LArgumentos.clear();
 				LArgumentos.add(R.tipo);
@@ -1120,7 +1120,7 @@ public class AnalizadorSinSem {
 				}
 				return;
 			case "Entero":
-				escribirParse("30");
+				escribirParse("28");
 				R();
 				LArgumentos.clear();
 				LArgumentos.add(R.tipo);
@@ -1131,7 +1131,7 @@ public class AnalizadorSinSem {
 				}
 				return;
 			case "cadena":
-				escribirParse("30");
+				escribirParse("28");
 				R();
 				LArgumentos.clear();
 				LArgumentos.add(R.tipo);
@@ -1142,7 +1142,7 @@ public class AnalizadorSinSem {
 				}
 				return;
 			case "Preincremento":
-				escribirParse("30");
+				escribirParse("20");
 				R();
 				LArgumentos.clear();
 				LArgumentos.add(R.tipo);
@@ -1153,7 +1153,7 @@ public class AnalizadorSinSem {
 				}
 				return;
 			case "true":
-				escribirParse("30");
+				escribirParse("28");
 				R();
 				LArgumentos.clear();
 				LArgumentos.add(R.tipo);
@@ -1164,7 +1164,7 @@ public class AnalizadorSinSem {
 				}
 				return;
 			case "false":
-				escribirParse("30");
+				escribirParse("28");
 				R();
 				LArgumentos.clear();
 				LArgumentos.add(R.tipo);
@@ -1175,7 +1175,7 @@ public class AnalizadorSinSem {
 				}
 				return;
 			case "ap":
-				escribirParse("30");
+				escribirParse("28");
 				R();
 				LArgumentos.clear();
 				LArgumentos.add(R.tipo);
@@ -1186,7 +1186,7 @@ public class AnalizadorSinSem {
 				}
 				return;
 			case "negacion":
-				escribirParse("30");
+				escribirParse("28");
 				R();
 				LArgumentos.clear();
 				LArgumentos.add(R.tipo);
@@ -1197,7 +1197,7 @@ public class AnalizadorSinSem {
 				}
 				return;
 			case "div":
-				escribirParse("30");
+				escribirParse("28");
 				R();
 				LArgumentos.clear();
 				LArgumentos.add(R.tipo);
@@ -1209,7 +1209,7 @@ public class AnalizadorSinSem {
 				return;
 				//Follow L
 			case "cp":
-				escribirParse("31");
+				escribirParse("29");
 				return;
 			default:
 				break;
@@ -1224,7 +1224,7 @@ public class AnalizadorSinSem {
 		}else{
 			switch(sgtetoken.tipoToken){
 			case "Coma":
-				escribirParse("32");
+				escribirParse("30");
 				sgtetoken = AnManager.pedirTokenAlex();
 				R();
 				LArgumentos.add(R.tipo);
@@ -1232,7 +1232,7 @@ public class AnalizadorSinSem {
 				return;
 				//Follow Q
 			case "cp":
-				escribirParse("33");
+				escribirParse("31");
 				return;
 			default:
 				break;
@@ -1247,7 +1247,7 @@ public class AnalizadorSinSem {
 			switch(sgtetoken.tipoToken){
 			//First U
 			case "ID":
-				escribirParse("34");
+				escribirParse("32");
 				U();
 				String tipo = U.tipo;
 				R.tipo = tipo;
@@ -1262,7 +1262,7 @@ public class AnalizadorSinSem {
 
 				return;
 			case "Entero":
-				escribirParse("34");
+				escribirParse("32");
 				U();
 				String tipo1 = U.tipo;
 				R.tipo = tipo1;
@@ -1277,7 +1277,7 @@ public class AnalizadorSinSem {
 
 				return;
 			case "cadena":
-				escribirParse("34");
+				escribirParse("32");
 				U();
 				String tipo2 = U.tipo;
 				R.tipo = tipo2;
@@ -1292,7 +1292,7 @@ public class AnalizadorSinSem {
 
 				return;
 			case "Preincremento":
-				escribirParse("34");
+				escribirParse("32");
 				U();
 				String tipo3 = U.tipo;
 				R.tipo = tipo3;
@@ -1307,7 +1307,7 @@ public class AnalizadorSinSem {
 
 				return;
 			case "true":
-				escribirParse("34");
+				escribirParse("32");
 				U();
 				String tipo4 = U.tipo;
 				R.tipo = tipo4;
@@ -1322,7 +1322,7 @@ public class AnalizadorSinSem {
 
 				return;
 			case "false":
-				escribirParse("34");
+				escribirParse("32");
 				U();
 				String tipo5 = U.tipo;
 				R.tipo = tipo5;
@@ -1337,7 +1337,7 @@ public class AnalizadorSinSem {
 
 				return;
 			case "ap":
-				escribirParse("34");
+				escribirParse("32");
 				U();
 				String tipo6 = U.tipo;
 				R.tipo = tipo6;
@@ -1353,7 +1353,7 @@ public class AnalizadorSinSem {
 				return;
 				
 			case ("negacion"):
-				escribirParse("34");
+				escribirParse("32");
 				U();
 				String tipo7 = U.tipo;
 				R.tipo = tipo7;
@@ -1367,7 +1367,7 @@ public class AnalizadorSinSem {
 				RaRel = false;
 				
 			case ("div"):
-				escribirParse("34");
+				escribirParse("32");
 				U();
 				String tipo8 = U.tipo;
 				R.tipo = tipo8;
@@ -1392,7 +1392,7 @@ public class AnalizadorSinSem {
 		}else{
 			switch(sgtetoken.tipoToken){
 			case "igual":
-				escribirParse("35");
+				escribirParse("33");
 				sgtetoken = AnManager.pedirTokenAlex();	
 				R();
 				RaRel = true;
@@ -1402,13 +1402,13 @@ public class AnalizadorSinSem {
 				return;
 				//Follow Ra
 			case "PuntoComa":
-				escribirParse("36");
+				escribirParse("34");
 				return;
 			case "cp":
-				escribirParse("36");
+				escribirParse("34");
 				return;
 			case "Coma":
-				escribirParse("36");
+				escribirParse("34");
 				return;
 			default:
 				break;
@@ -1424,7 +1424,7 @@ public class AnalizadorSinSem {
 			switch(sgtetoken.tipoToken){
 			//First V
 			case "ID":
-				escribirParse("37");
+				escribirParse("35");
 				V();
 				String tipo = V.tipo;
 				U.tipo = tipo;
@@ -1438,7 +1438,7 @@ public class AnalizadorSinSem {
 				UaSuma = false;
 				return;
 			case "Entero":
-				escribirParse("37");
+				escribirParse("35");
 				V();
 				String tipo1 = V.tipo;
 				U.tipo = tipo1;
@@ -1452,7 +1452,7 @@ public class AnalizadorSinSem {
 				UaSuma = false;
 				return;
 			case "cadena":
-				escribirParse("37");
+				escribirParse("35");
 				V();
 				String tipo2 = V.tipo;
 				U.tipo = tipo2;
@@ -1466,7 +1466,7 @@ public class AnalizadorSinSem {
 				UaSuma = false;
 				return;
 			case "Preincremento":
-				escribirParse("37");
+				escribirParse("35");
 				V();
 				String tipo3 = V.tipo;
 				U.tipo = tipo3;
@@ -1480,7 +1480,7 @@ public class AnalizadorSinSem {
 				UaSuma = false;
 				return;
 			case "true":
-				escribirParse("37");
+				escribirParse("35");
 				V();
 				String tipo4 = V.tipo;
 				U.tipo = tipo4;
@@ -1494,7 +1494,7 @@ public class AnalizadorSinSem {
 				UaSuma = false;
 				return;
 			case "false":
-				escribirParse("37");
+				escribirParse("35");
 				V();
 				String tipo5 = V.tipo;
 				U.tipo = tipo5;
@@ -1508,7 +1508,7 @@ public class AnalizadorSinSem {
 				UaSuma = false;
 				return;
 			case "ap":
-				escribirParse("37");
+				escribirParse("35");
 				V();
 				String tipo6 = V.tipo;
 				U.tipo = tipo6;
@@ -1522,7 +1522,7 @@ public class AnalizadorSinSem {
 				UaSuma = false;				
 				return;
 			case "negacion":
-				escribirParse("37");
+				escribirParse("35");
 				V();
 				String tipo7 = V.tipo;
 				U.tipo = tipo7;
@@ -1536,7 +1536,7 @@ public class AnalizadorSinSem {
 				UaSuma = false;				
 				return;
 			case "div":
-				escribirParse("37");
+				escribirParse("35");
 				V();
 				String tipo8 = V.tipo;
 				U.tipo = tipo8;
@@ -1561,7 +1561,7 @@ public class AnalizadorSinSem {
 		}else{
 			switch(sgtetoken.tipoToken){
 			case "suma":
-				escribirParse("38");
+				escribirParse("36");
 				sgtetoken = AnManager.pedirTokenAlex();
 				U();
 				UaSuma = true;
@@ -1573,19 +1573,19 @@ public class AnalizadorSinSem {
 				return;
 				//Follow Ua
 			case "igual":
-				escribirParse("39");
+				escribirParse("37");
 				return;
 			case "negacion":
-				escribirParse("39");
+				escribirParse("37");
 				return;
 			case "PuntoComa":
-				escribirParse("39");
+				escribirParse("37");
 				return;
 			case "cp":
-				escribirParse("39");
+				escribirParse("37");
 				return;
 			case "Coma":
-				escribirParse("39");
+				escribirParse("37");
 				return;
 			default:
 				break;
@@ -1599,7 +1599,7 @@ public class AnalizadorSinSem {
 		}else{
 			switch(sgtetoken.tipoToken){
 			case "ID":
-				escribirParse("40");
+				escribirParse("38");
 				String lexema = sgtetoken.attrToken;
 				sgtetoken = AnManager.pedirTokenAlex();
 				Va();
@@ -1667,17 +1667,17 @@ public class AnalizadorSinSem {
 				}
 				return;
 			case "Entero":
-				escribirParse("41");
+				escribirParse("39");
 				V.tipo = "Entero";
 				sgtetoken = AnManager.pedirTokenAlex();
 				return;
 			case "cadena":
-				escribirParse("42");
+				escribirParse("40");
 				V.tipo = "string";
 				sgtetoken = AnManager.pedirTokenAlex();
 				return;
 			case "Preincremento":
-				escribirParse("43");
+				escribirParse("41");
 				V.tipo = "Entero";
 				sgtetoken = AnManager.pedirTokenAlex();
 				if (sgtetoken.tipoToken.equals("ID")){
@@ -1708,17 +1708,17 @@ public class AnalizadorSinSem {
 				}	
 				return;
 			case "true":
-				escribirParse("44");
+				escribirParse("42");
 				V.tipo = "Bool";
 				sgtetoken = AnManager.pedirTokenAlex();
 				return;
 			case "false":
-				escribirParse("45");
+				escribirParse("43");
 				V.tipo = "Bool";
 				sgtetoken = AnManager.pedirTokenAlex();
 				return;
 			case "ap":
-				escribirParse("46");
+				escribirParse("44");
 				sgtetoken = AnManager.pedirTokenAlex();
 				R();
 				V.tipo = R.tipo;
@@ -1729,7 +1729,7 @@ public class AnalizadorSinSem {
 				}	
 				return;
 			case "negacion":
-				escribirParse("47");
+				escribirParse("45");
 				V.tipo = "Entero";
 				sgtetoken = AnManager.pedirTokenAlex();
 				return;
@@ -1747,7 +1747,7 @@ public class AnalizadorSinSem {
 		}else{
 			switch(sgtetoken.tipoToken){
 			case "ap":
-				escribirParse("49");
+				escribirParse("46");
 				sgtetoken = AnManager.pedirTokenAlex();
 				L();
 				//Analizador semantico
@@ -1761,23 +1761,23 @@ public class AnalizadorSinSem {
 				return;
 				//Follow Va
 			case "igual":
-				escribirParse("50");
+				escribirParse("47");
 				llamadaFuncion=false;
 				return;
 			case "suma":
-				escribirParse("50");
+				escribirParse("47");
 				llamadaFuncion=false;
 				return;
 			case "PuntoComa":
-				escribirParse("50");
+				escribirParse("47");
 				llamadaFuncion=false;
 				return;
 			case "cp":
-				escribirParse("50");
+				escribirParse("47");
 				llamadaFuncion=false;
 				return;
 			case "Coma":
-				escribirParse("50");
+				escribirParse("47");
 				llamadaFuncion=false;
 				return;
 			default:
