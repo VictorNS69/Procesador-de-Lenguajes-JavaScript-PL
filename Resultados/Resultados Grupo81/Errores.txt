@@ -1,1 +1,1 @@
-*No se han detectado errores en el codigo*
+(linea 1) ->Error en Analizador sintactico: No se permite el token <Preincremento, > aqui

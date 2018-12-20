@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 public class AnalizadorSinSem {
 	//Constantes para calcular el desplazamiento seg�n el tipo de variable
 	private final static int desInt = 2; //Las variables enteras son 2
-	private final static int desChars = 4; //Las cadenas son 4
+	private final static int desChars = 4; //Las Cadenas son 4
 	private final static int desBool = 2; //Los booleanos son 2
 
 	//Variables necesarias para las tablas de s�mbolos
@@ -585,18 +585,19 @@ public class AnalizadorSinSem {
 			case "igual":
 				escribirParse("15");
 				sgtetoken = AnManager.pedirTokenAlex();
+
 				R();
 				if (RhayError){	
 					Errores.escribirError("Analizador semantico", "No es correcta la expresion", AnManager.lineasST);
 					RhayError = false;
 				}
 				//Analizador semantico
-				Sa.tipo = R.tipo;
-
+				Sa.tipo = R.tipo;		
 
 				if (sgtetoken.tipoToken.equals("PuntoComa")){
 					sgtetoken = AnManager.pedirTokenAlex();
-				}else{
+				}
+				else{
 					Errores.escribirError("Analizador sintactico", "Se esperaba ';'. Se ha recibido el token <"+sgtetoken.tipoToken+","+sgtetoken.attrToken+"> aqui", AnManager.lineasST);
 					Errores.panicMode();
 				}
@@ -661,7 +662,7 @@ public class AnalizadorSinSem {
 				//Analizador semantico
 				X.tipo = R.tipo;
 				return;
-			case "cadena":
+			case "Cadena":
 				escribirParse("17");
 				R();
 				if (RhayError){	
@@ -1130,7 +1131,7 @@ public class AnalizadorSinSem {
 					RhayError = false;
 				}
 				return;
-			case "cadena":
+			case "Cadena":
 				escribirParse("28");
 				R();
 				LArgumentos.clear();
@@ -1276,7 +1277,7 @@ public class AnalizadorSinSem {
 				RaRel = false;
 
 				return;
-			case "cadena":
+			case "Cadena":
 				escribirParse("32");
 				U();
 				String tipo2 = U.tipo;
@@ -1285,7 +1286,7 @@ public class AnalizadorSinSem {
 				if (RaRel){
 					if (!(U.tipo.equals("Entero") && tipo2.equals("Entero")) ){
 						RhayError = true;
-					}
+					}	
 					R.tipo = "Bool";
 				}
 				RaRel = false;
@@ -1451,7 +1452,7 @@ public class AnalizadorSinSem {
 				}
 				UaSuma = false;
 				return;
-			case "cadena":
+			case "Cadena":
 				escribirParse("35");
 				V();
 				String tipo2 = V.tipo;
@@ -1671,7 +1672,7 @@ public class AnalizadorSinSem {
 				V.tipo = "Entero";
 				sgtetoken = AnManager.pedirTokenAlex();
 				return;
-			case "cadena":
+			case "Cadena":
 				escribirParse("40");
 				V.tipo = "string";
 				sgtetoken = AnManager.pedirTokenAlex();

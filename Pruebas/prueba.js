@@ -1,4 +1,2 @@
-while (true) { 
-	a = 3;
-}
-
+var int a;
+++a;

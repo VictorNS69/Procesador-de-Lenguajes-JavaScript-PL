@@ -1,11 +1,8 @@
-<while,>
-<ap, >
-<true,>
-<cp, >
-<al, >
+<var,>
+<int,>
 <ID,a>
-<igual,>
-<Entero,3>
 <PuntoComa, >
-<cl, >
+<Preincremento, >
+<ID,a>
+<PuntoComa, >
 <EOF, >
