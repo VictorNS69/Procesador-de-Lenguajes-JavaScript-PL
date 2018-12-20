@@ -1,1 +1,1 @@
-(linea 1) ->Error en Analizador sintactico: No se permite el token <Preincremento, > aqui
+(linea 1) ->Error en Analizador semantico: La variable a no se ha declarado anteriormente

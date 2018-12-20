@@ -151,7 +151,7 @@ public class AnManager {
 			pw.println("");
 			pw.println("Terminales = { var id ; if =  {  } (  ) ! != +  ++ , function int string bool true false return print prompt entero cadena while eof }");
 			pw.println("");
-			pw.println("NoTerminales = { P B T S Sa X C F H A K L Q R Ra U Ua V Va }");
+			pw.println("NoTerminales = { P B T S Sa X C F H A K L Q R Ra U Ua V Va Vb }");
 			pw.println("");
 			pw.println("Axioma = P");
 			pw.println("");
@@ -171,6 +171,7 @@ public class AnManager {
 			pw.println("S -> print ( R ) ; ");
 			pw.println("S -> prompt ( id ) ;");
 			pw.println("Sa -> = R ; ");
+			pw.println("Sa -> != R ; ");
 			pw.println("Sa -> ( L ) ;");
 			pw.println("X -> R");
 			pw.println("X -> lambda");
@@ -189,6 +190,7 @@ public class AnManager {
 			pw.println("Q -> lambda");
 			pw.println("R -> U Ra");
 			pw.println("Ra -> = R");
+			pw.println("Ra -> != R");
 			pw.println("Ra -> lambda");
 			pw.println("U -> V Ua");
 			pw.println("Ua -> + U");
@@ -200,9 +202,12 @@ public class AnManager {
 			pw.println("V -> true");
 			pw.println("V -> false");
 			pw.println("V -> ( R )");
-			pw.println("V -> !");
+			pw.println("V -> ! Vb");
 			pw.println("Va -> ( L )");
 			pw.println("Va -> lambda");
+			pw.println("Vb -> true");
+			pw.println("Vb -> false");
+			pw.println("Vb -> id");
 			pw.println("}");
 			pw.println("");
 		} catch (IOException e) {

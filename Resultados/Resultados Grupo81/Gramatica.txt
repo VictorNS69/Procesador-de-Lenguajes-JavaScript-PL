@@ -1,7 +1,7 @@
 
 Terminales = { var id ; if =  {  } (  ) ! != +  ++ , function int string bool true false return print prompt entero cadena while eof }
 
-NoTerminales = { P B T S Sa X C F H A K L Q R Ra U Ua V Va }
+NoTerminales = { P B T S Sa X C F H A K L Q R Ra U Ua V Va Vb }
 
 Axioma = P
 
@@ -21,6 +21,7 @@ S -> return X ;
 S -> print ( R ) ; 
 S -> prompt ( id ) ;
 Sa -> = R ; 
+Sa -> != R ; 
 Sa -> ( L ) ;
 X -> R
 X -> lambda
@@ -39,6 +40,7 @@ Q -> , R Q
 Q -> lambda
 R -> U Ra
 Ra -> = R
+Ra -> != R
 Ra -> lambda
 U -> V Ua
 Ua -> + U
@@ -50,8 +52,11 @@ V -> ++ id
 V -> true
 V -> false
 V -> ( R )
-V -> !
+V -> ! Vb
 Va -> ( L )
 Va -> lambda
+Vb -> true
+Vb -> false
+Vb -> id
 }
 

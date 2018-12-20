@@ -1,8 +1,11 @@
-<var,>
-<int,>
+<if,>
+<ap, >
 <ID,a>
-<PuntoComa, >
-<Preincremento, >
+<igual,>
+<Cadena,"hola">
+<cp, >
 <ID,a>
+<igual,>
+<Entero,3>
 <PuntoComa, >
 <EOF, >
