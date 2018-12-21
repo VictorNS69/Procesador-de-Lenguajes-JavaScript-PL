@@ -1577,7 +1577,7 @@ public class AnalizadorSinSem {
 			Errores.escribirError("Analizador sintactico", "No hay mas tokens", AnManager.lineasST);
 			return;
 		}else{
-			System.out.print(sgtetoken.tipoToken);
+			//System.out.print(sgtetoken.tipoToken);
 			switch(sgtetoken.tipoToken){
 			case "suma":
 				escribirParse("38");
