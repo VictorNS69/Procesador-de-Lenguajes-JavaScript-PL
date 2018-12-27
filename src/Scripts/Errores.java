@@ -28,7 +28,7 @@ public class Errores {
 			File file = new File(AnManager.getPath() + File.separator +"Resultados Grupo81" + File.separator+ "Errores.txt");
 			FileWriter fw = new FileWriter(file, true);
 			pw = new PrintWriter(fw);
-			pw.println("(linea "+line+") ->Error en "+analizador+": " + def);
+			pw.println("->Error en "+analizador+": " + def);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
