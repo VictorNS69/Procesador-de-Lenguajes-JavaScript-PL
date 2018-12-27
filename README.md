@@ -6,6 +6,13 @@ Diseño y construcción de un Analizador de una versión del lenguaje JavaScript
 - Alejandro Carmona Ayllón
 - Miguel Moreno Mardones
 
+## Ejecutar
+Para ejecutar, escribir en un terminal:
+```
+java -jar Analizador.jar
+```
+O ejecutar en eclipse o similar el archivo [InterfazFile.java](/src/Scripts/InterfazFile.java)
+
 ## Lenguaje JavaScript-PL
 
 - **Comentarios**
