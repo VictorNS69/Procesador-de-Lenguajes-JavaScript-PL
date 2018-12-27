@@ -1,1 +1,0 @@
-(linea 1) ->Error en Analizador semantico: La variable a no se ha declarado anteriormente
