@@ -13,6 +13,10 @@ java -jar Analizador.jar
 ```
 O ejecutar en eclipse o similar el archivo [InterfazFile.java](/src/Scripts/InterfazFile.java)
 
+
+## Nota
+Este proyecto no funciona correctamente. Tiene varios fallos y bugs, pero la base de funcionamiento está, y la función básica del problema se resuelve para una gran cantidad de casos de nuestro lenguaje.
+
 ## Lenguaje JavaScript-PL
 
 - **Comentarios**
@@ -36,7 +40,7 @@ Negación (!).
 
 - **Operadores**
 	 - **Aritmeticos**
-   La suma (+) y la división (/).
+   La suma (+).
  	- **De relación**
    Distinto (!=).
  	- **De incremento y decremento**
@@ -121,7 +125,7 @@ La sentencia prompt (var) lee un número o una cadena del teclado y lo almacena 
 	print("Hola, ", c); /* imprime las cadenas */
 ```
 - **Sentencias**
-De todo el grupo de sentencias del lenguaje JavaScript, se han seleccionado para ser implementadas las que aparecen a continuación [opcional u obligatoriamente, según se indique en cada caso]:
+De todo el grupo de sentencias del lenguaje JavaScript, se han seleccionado para ser implementadas las que aparecen a continuación:
 
 - **Sentencias de Asignación**
 Existe una sentencia de asignación en JavaScript-PL, que se construye mediante el símbolo de asignación = . Su sintaxis general es la siguiente: identificador, igual y expresión. Esta sentencia asigna al identificador el resultado de evaluar la expresión:
