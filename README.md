@@ -13,10 +13,11 @@ java -jar Analizador.jar
 ```
 O ejecutar en eclipse o similar el archivo [InterfazFile.java](/src/Scripts/InterfazFile.java)
 
-
 ## Nota
 Este proyecto no funciona correctamente. Tiene varios fallos y bugs, pero la base de funcionamiento está, y la función básica del problema se resuelve para una gran cantidad de casos de nuestro lenguaje.
 
+## Memoria de la práctica
+En el directorio [_/doc_](/doc) se encuentra la [memoria de la práctica](/doc/Memoria PDL.pdf).
 ## Lenguaje JavaScript-PL
 
 - **Comentarios**
