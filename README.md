@@ -16,8 +16,11 @@ O ejecutar en eclipse o similar el archivo [InterfazFile.java](/src/Scripts/Inte
 ## Nota
 Este proyecto no funciona correctamente. Tiene varios fallos y bugs, pero la base de funcionamiento está, y la función básica del problema se resuelve para una gran cantidad de casos de nuestro lenguaje.
 
-## Memoria de la práctica
+## Documentos
 En el directorio [_/doc_](/doc) se encuentra la [memoria de la práctica](/doc/Memoria-PDL.pdf).
+
+También como se menciona en la memoria, se encuentra disponible la [tabla LL(1)](/doc/TablaLL1.xlsx).
+
 ## Lenguaje JavaScript-PL
 
 - **Comentarios**
