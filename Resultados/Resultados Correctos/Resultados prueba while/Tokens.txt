@@ -1,0 +1,52 @@
+<var,>
+<bool,>
+<ID,a>
+<PuntoComa, >
+<var,>
+<bool,>
+<ID,b>
+<PuntoComa, >
+<var,>
+<int,>
+<ID,d>
+<PuntoComa, >
+<var,>
+<int,>
+<ID,c>
+<PuntoComa, >
+<ID,c>
+<igual,>
+<Entero,1>
+<PuntoComa, >
+<ID,a>
+<igual,>
+<true,>
+<PuntoComa, >
+<ID,b>
+<igual,>
+<false,>
+<PuntoComa, >
+<while,>
+<ap, >
+<ID,a>
+<distinto,>
+<ID,b>
+<cp, >
+<al, >
+<ID,d>
+<igual,>
+<Preincremento, >
+<ID,c>
+<PuntoComa, >
+<if,>
+<ap, >
+<ID,c>
+<igual,>
+<ID,d>
+<cp, >
+<ID,b>
+<igual,>
+<true,>
+<PuntoComa, >
+<cl, >
+<EOF, >

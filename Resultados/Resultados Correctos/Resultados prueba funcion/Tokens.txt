@@ -1,0 +1,43 @@
+<var,>
+<int,>
+<ID,c>
+<PuntoComa, >
+<ID,c>
+<igual,>
+<Entero,100>
+<PuntoComa, >
+<function,>
+<int,>
+<ID,b>
+<ap, >
+<cp, >
+<al, >
+<var,>
+<int,>
+<ID,c>
+<PuntoComa, >
+<var,>
+<string,>
+<ID,s>
+<PuntoComa, >
+<ID,s>
+<igual,>
+<Cadena,"$en una funcion$">
+<PuntoComa, >
+<ID,c>
+<igual,>
+<Entero,3>
+<PuntoComa, >
+<if,>
+<ap, >
+<true,>
+<cp, >
+<ID,n>
+<igual,>
+<Entero,4>
+<PuntoComa, >
+<return,>
+<ID,c>
+<PuntoComa, >
+<cl, >
+<EOF, >

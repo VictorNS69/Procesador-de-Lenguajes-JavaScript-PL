@@ -1,0 +1,21 @@
+<div, >
+<ID,este>
+<ID,comentario>
+<ID,no>
+<ID,esta>
+<div, >
+<var,>
+<ID,s>
+<PuntoComa, >
+<var,>
+<int,>
+<ID,d>
+<ID,a>
+<igual,>
+<Entero,5>
+<PuntoComa, >
+<return,>
+<Preincremento, >
+<ID,a>
+<PuntoComa, >
+<EOF, >

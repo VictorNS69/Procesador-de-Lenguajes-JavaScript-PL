@@ -1,0 +1,1 @@
+->Error en Analizador semantico: La variable s ya se ha declarado anteriormente

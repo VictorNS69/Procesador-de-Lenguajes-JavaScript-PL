@@ -1,0 +1,26 @@
+TABLA GLOBAL #1 :
+
+  * LEXEMA: 'c'
+	+ Tipo: 'Entero'
+	+ Desplazamiento: '0'
+
+  * LEXEMA: 'n'
+	+ Tipo: 'Entero'
+	+ Desplazamiento: '2'
+
+  * LEXEMA: 'b' (Funcion)
+	+ TipoDevuelto: 'Entero'
+	+ NoParametros: '0'
+
+-----------------------------------------------------------------------
+TABLA DE LA Funcion b #2 :
+
+  * LEXEMA: 'c'
+	+ Tipo: 'Entero'
+	+ Desplazamiento: '0'
+
+  * LEXEMA: 's'
+	+ Tipo: 'string'
+	+ Desplazamiento: '2'
+
+-----------------------------------------------------------------------

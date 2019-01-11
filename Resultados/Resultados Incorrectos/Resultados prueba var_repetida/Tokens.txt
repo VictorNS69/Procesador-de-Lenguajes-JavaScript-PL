@@ -1,0 +1,17 @@
+<var,>
+<string,>
+<ID,s>
+<PuntoComa, >
+<ID,s>
+<igual,>
+<Cadena,"cadena uno">
+<PuntoComa, >
+<var,>
+<string,>
+<ID,s>
+<PuntoComa, >
+<ID,s>
+<igual,>
+<Cadena,"cadena dos">
+<PuntoComa, >
+<EOF, >

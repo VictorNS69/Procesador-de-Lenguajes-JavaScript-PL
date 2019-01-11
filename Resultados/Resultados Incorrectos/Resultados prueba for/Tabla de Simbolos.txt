@@ -1,0 +1,19 @@
+TABLA GLOBAL #1 :
+
+  * LEXEMA: 'a'
+	+ Tipo: 'Entero'
+	+ Desplazamiento: '0'
+
+  * LEXEMA: 'b'
+	+ Tipo: 'Entero'
+	+ Desplazamiento: '2'
+
+  * LEXEMA: 's'
+	+ Tipo: 'string'
+	+ Desplazamiento: '4'
+
+  * LEXEMA: 'for'
+	+ Tipo: 'Entero'
+	+ Desplazamiento: '8'
+
+-----------------------------------------------------------------------

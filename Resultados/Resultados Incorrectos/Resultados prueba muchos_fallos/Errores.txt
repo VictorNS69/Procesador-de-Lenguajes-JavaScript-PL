@@ -1,0 +1,3 @@
+->Error en Analizador lexico: No se reconoce el caracter ( * )
+->Error en Analizador lexico: No se reconoce el caracter ( * )
+->Error en Analizador sintactico: No se permite el token <div, > aqui

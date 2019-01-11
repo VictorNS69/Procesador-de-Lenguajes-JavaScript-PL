@@ -1,0 +1,11 @@
+TABLA GLOBAL #1 :
+
+  * LEXEMA: 'n'
+	+ Tipo: 'Entero'
+	+ Desplazamiento: '0'
+
+  * LEXEMA: 't'
+	+ Tipo: 'Bool'
+	+ Desplazamiento: '2'
+
+-----------------------------------------------------------------------

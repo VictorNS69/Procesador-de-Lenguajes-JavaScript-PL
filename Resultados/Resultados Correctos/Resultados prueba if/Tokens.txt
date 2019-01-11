@@ -1,0 +1,47 @@
+<var,>
+<string,>
+<ID,a>
+<PuntoComa, >
+<if,>
+<ap, >
+<negacion,>
+<true,>
+<cp, >
+<ID,a>
+<igual,>
+<Cadena,"dentro true 1">
+<PuntoComa, >
+<if,>
+<ap, >
+<negacion,>
+<false,>
+<cp, >
+<ID,a>
+<igual,>
+<Cadena,"dentro false 1">
+<PuntoComa, >
+<var,>
+<string,>
+<ID,b>
+<PuntoComa, >
+<if,>
+<ap, >
+<true,>
+<distinto,>
+<true,>
+<cp, >
+<ID,b>
+<igual,>
+<Cadena,"dentro true 2">
+<PuntoComa, >
+<if,>
+<ap, >
+<false,>
+<distinto,>
+<false,>
+<cp, >
+<ID,b>
+<igual,>
+<Cadena,"dentro false 2">
+<PuntoComa, >
+<EOF, >

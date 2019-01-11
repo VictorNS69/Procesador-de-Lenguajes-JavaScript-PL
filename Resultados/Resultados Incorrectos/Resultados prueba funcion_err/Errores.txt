@@ -1,0 +1,4 @@
+->Error en Analizador semantico: La Funcion s ya se ha declarado anteriormente
+->Error en Analizador sintactico: Se esperaba ';'. Se ha recibido el token <var,> aqui
+->Error en Analizador sintactico: No se permite el token <EOF, > aqui
+->Error en Analizador sintactico: Se esperaba '}'. Se ha recibido el token <EOF, > aqui

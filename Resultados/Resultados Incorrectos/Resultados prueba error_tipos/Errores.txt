@@ -1,0 +1,2 @@
+->Error en Analizador semantico: No se puede asignar un valor de tipo Bool a la variable n de tipo Entero
+->Error en Analizador semantico: No se puede asignar un valor de tipo string a la variable b de tipo Bool

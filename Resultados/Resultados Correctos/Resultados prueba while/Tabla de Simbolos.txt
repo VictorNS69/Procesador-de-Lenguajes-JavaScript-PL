@@ -1,0 +1,19 @@
+TABLA GLOBAL #1 :
+
+  * LEXEMA: 'a'
+	+ Tipo: 'Bool'
+	+ Desplazamiento: '0'
+
+  * LEXEMA: 'b'
+	+ Tipo: 'Bool'
+	+ Desplazamiento: '2'
+
+  * LEXEMA: 'd'
+	+ Tipo: 'Entero'
+	+ Desplazamiento: '4'
+
+  * LEXEMA: 'c'
+	+ Tipo: 'Entero'
+	+ Desplazamiento: '6'
+
+-----------------------------------------------------------------------

@@ -1,0 +1,43 @@
+<var,>
+<string,>
+<ID,s>
+<PuntoComa, >
+<ID,s>
+<igual,>
+<Cadena,"esto se va a imprimir">
+<PuntoComa, >
+<var,>
+<int,>
+<ID,n>
+<PuntoComa, >
+<ID,n>
+<igual,>
+<Entero,1>
+<PuntoComa, >
+<print,>
+<ap, >
+<ID,n>
+<suma, >
+<ID,s>
+<cp, >
+<PuntoComa, >
+<var,>
+<string,>
+<ID,s2>
+<PuntoComa, >
+<ID,s>
+<igual,>
+<Cadena,"esto es el final">
+<PuntoComa, >
+<ID,n>
+<igual,>
+<Entero,2>
+<PuntoComa, >
+<print,>
+<ap, >
+<ID,n>
+<suma, >
+<ID,s2>
+<cp, >
+<PuntoComa, >
+<EOF, >

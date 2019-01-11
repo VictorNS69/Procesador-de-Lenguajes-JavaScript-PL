@@ -1,0 +1,30 @@
+<var,>
+<int,>
+<ID,s>
+<PuntoComa, >
+<function,>
+<ID,s>
+<ap, >
+<int,>
+<ID,a>
+<Coma, >
+<int,>
+<ID,s>
+<cp, >
+<al, >
+<ID,a>
+<igual,>
+<Entero,4>
+<var,>
+<string,>
+<ID,s>
+<PuntoComa, >
+<ID,s>
+<igual,>
+<Cadena,"salida">
+<PuntoComa, >
+<return,>
+<ID,a>
+<PuntoComa, >
+<cl, >
+<EOF, >

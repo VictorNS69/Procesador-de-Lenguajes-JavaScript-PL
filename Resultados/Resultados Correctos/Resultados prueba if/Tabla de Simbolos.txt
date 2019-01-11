@@ -1,0 +1,11 @@
+TABLA GLOBAL #1 :
+
+  * LEXEMA: 'a'
+	+ Tipo: 'string'
+	+ Desplazamiento: '0'
+
+  * LEXEMA: 'b'
+	+ Tipo: 'string'
+	+ Desplazamiento: '4'
+
+-----------------------------------------------------------------------

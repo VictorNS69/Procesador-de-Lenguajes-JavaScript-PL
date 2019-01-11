@@ -1,0 +1,39 @@
+<var,>
+<int,>
+<ID,a>
+<PuntoComa, >
+<var,>
+<int,>
+<ID,b>
+<PuntoComa, >
+<ID,a>
+<igual,>
+<Entero,2>
+<PuntoComa, >
+<var,>
+<string,>
+<ID,s>
+<PuntoComa, >
+<ID,s>
+<igual,>
+<Cadena,"estoy dentro del for">
+<PuntoComa, >
+<ID,for>
+<ap, >
+<ID,a>
+<PuntoComa, >
+<ID,a>
+<distinto,>
+<Entero,3>
+<PuntoComa, >
+<Preincremento, >
+<ID,a>
+<cp, >
+<al, >
+<print,>
+<ap, >
+<ID,s>
+<cp, >
+<PuntoComa, >
+<cl, >
+<EOF, >
